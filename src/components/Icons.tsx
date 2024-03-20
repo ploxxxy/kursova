@@ -6,7 +6,7 @@ export const Icons = {
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       stroke="#000"
-      stroke-width="0"
+      strokeWidth="0"
       aria-hidden="true"
       viewBox="0 0 128 128"
     >
@@ -23,8 +23,8 @@ export const Icons = {
         gradientTransform="matrix(1 0 0 .4912 -21 59.5)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" stop-opacity="0" />
-        <stop offset="1" stop-color="#735044" />
+        <stop offset=".7" stopColor="#735044" stopOpacity="0" />
+        <stop offset="1" stopColor="#735044" />
       </radialGradient>
       <path
         fill="url(#a)"
@@ -39,8 +39,8 @@ export const Icons = {
         gradientTransform="matrix(-.9057 .4238 -.3144 -.6719 186.5 79.3)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" />
-        <stop offset="1" stop-color="#735044" stop-opacity="0" />
+        <stop offset=".7" stopColor="#735044" />
+        <stop offset="1" stopColor="#735044" stopOpacity="0" />
       </radialGradient>
       <path
         fill="url(#b)"
@@ -55,8 +55,8 @@ export const Icons = {
         gradientTransform="matrix(-.0746 -.9972 .8311 -.0622 33.4 157.5)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" stop-opacity="0" />
-        <stop offset="1" stop-color="#735044" />
+        <stop offset=".7" stopColor="#735044" stopOpacity="0" />
+        <stop offset="1" stopColor="#735044" />
       </radialGradient>
       <path
         fill="url(#c)"
@@ -71,8 +71,8 @@ export const Icons = {
         gradientTransform="matrix(.0746 -.9972 -.8311 -.0622 98.3 107.5)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" stop-opacity="0" />
-        <stop offset="1" stop-color="#735044" />
+        <stop offset=".7" stopColor="#735044" stopOpacity="0" />
+        <stop offset="1" stopColor="#735044" />
       </radialGradient>
       <path
         fill="url(#d)"
@@ -87,8 +87,8 @@ export const Icons = {
         gradientTransform="matrix(-1 0 0 .4912 98.9 59.5)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" stop-opacity="0" />
-        <stop offset="1" stop-color="#735044" />
+        <stop offset=".7" stopColor="#735044" stopOpacity="0" />
+        <stop offset="1" stopColor="#735044" />
       </radialGradient>
       <path
         fill="url(#e)"
@@ -103,8 +103,8 @@ export const Icons = {
         gradientTransform="matrix(.9057 .4238 .3144 -.6719 -13 100.6)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" />
-        <stop offset="1" stop-color="#735044" stop-opacity="0" />
+        <stop offset=".7" stopColor="#735044" />
+        <stop offset="1" stopColor="#735044" stopOpacity="0" />
       </radialGradient>
       <path
         fill="url(#f)"
@@ -151,8 +151,8 @@ export const Icons = {
         gradientTransform="matrix(.3076 .9515 .706 -.2282 -2.3 -16.1)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" stop-opacity="0" />
-        <stop offset="1" stop-color="#735044" />
+        <stop offset=".7" stopColor="#735044" stopOpacity="0" />
+        <stop offset="1" stopColor="#735044" />
       </radialGradient>
       <path
         fill="url(#g)"
@@ -167,8 +167,8 @@ export const Icons = {
         gradientTransform="matrix(.9907 .1363 .1915 -1.3921 -15.9 156)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".6" stop-color="#735044" stop-opacity="0" />
-        <stop offset="1" stop-color="#735044" />
+        <stop offset=".6" stopColor="#735044" stopOpacity="0" />
+        <stop offset="1" stopColor="#735044" />
       </radialGradient>
       <path
         fill="url(#h)"
@@ -183,8 +183,8 @@ export const Icons = {
         gradientTransform="matrix(-.9657 -.2598 -.2432 .9037 96.2 -44.7)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".7" stop-color="#735044" stop-opacity="0" />
-        <stop offset="1" stop-color="#735044" />
+        <stop offset=".7" stopColor="#735044" stopOpacity="0" />
+        <stop offset="1" stopColor="#735044" />
       </radialGradient>
       <path
         fill="url(#i)"
@@ -223,9 +223,9 @@ export const Icons = {
         gradientTransform="matrix(1 0 0 -1 0 128)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#424242" />
-        <stop offset=".5" stop-color="#353535" />
-        <stop offset="1" stop-color="#212121" />
+        <stop offset="0" stopColor="#424242" />
+        <stop offset=".5" stopColor="#353535" />
+        <stop offset="1" stopColor="#212121" />
       </linearGradient>
       <path
         fill="url(#j)"
@@ -241,10 +241,10 @@ export const Icons = {
         gradientTransform="matrix(1 0 0 -1 0 128)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#616161" />
-        <stop offset=".3" stop-color="#505050" />
-        <stop offset="1" stop-color="#242424" />
-        <stop offset="1" stop-color="#212121" />
+        <stop offset="0" stopColor="#616161" />
+        <stop offset=".3" stopColor="#505050" />
+        <stop offset="1" stopColor="#242424" />
+        <stop offset="1" stopColor="#212121" />
       </linearGradient>
       <path
         fill="url(#k)"
@@ -260,10 +260,10 @@ export const Icons = {
         gradientTransform="matrix(1 0 0 -1 0 128)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stop-color="#bfbebe" />
-        <stop offset=".3" stop-color="#212121" stop-opacity="0" />
-        <stop offset=".7" stop-color="#212121" stop-opacity="0" />
-        <stop offset="1" stop-color="#bfbebe" />
+        <stop offset="0" stopColor="#bfbebe" />
+        <stop offset=".3" stopColor="#212121" stopOpacity="0" />
+        <stop offset=".7" stopColor="#212121" stopOpacity="0" />
+        <stop offset="1" stopColor="#bfbebe" />
       </linearGradient>
       <path
         fill="url(#l)"
@@ -284,8 +284,8 @@ export const Icons = {
         gradientTransform="matrix(1 0 0 -.5247 0 125.4)"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset=".6" stop-color="#212121" />
-        <stop offset="1" stop-color="#616161" />
+        <stop offset=".6" stopColor="#212121" />
+        <stop offset="1" stopColor="#616161" />
       </radialGradient>
       <path
         fill="url(#m)"

@@ -1,3 +1,4 @@
+import Providers from '@/components/Providers'
 import Navbar from '@/components/ui/Navbar'
 import { Toaster } from '@/components/ui/Toaster'
 import { cn } from '@/lib/utils'
@@ -24,15 +25,17 @@ export default function RootLayout({
   return (
     <html lang="uk" className={cn('bg-background antialiased', font.className)}>
       <body className="min-h-screen">
-        <Navbar />
+        <Providers>
+          <Navbar />
 
-        {authModal}
+          {authModal}
 
-        <div className="container max-w-7xl mx-auto h-full pt-12">
-          {children}
-        </div>
+          <div className="container max-w-7xl mx-auto h-full pt-24">
+            {children}
+          </div>
 
-        <Toaster />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   )
