@@ -1,7 +1,7 @@
-import { clsx, type ClassValue } from "clsx"
+import { clsx, type ClassValue } from 'clsx'
 import { formatDistanceToNowStrict } from 'date-fns'
 import locale from 'date-fns/locale/en-US'
-import { twMerge } from "tailwind-merge"
+import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

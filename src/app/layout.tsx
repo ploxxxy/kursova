@@ -3,9 +3,11 @@ import { Toaster } from '@/components/ui/Toaster'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter } from 'next/font/google' // Wix_Madefor_Text  |  Geologica
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] })
+const font = Inter({
+  subsets: ['latin', 'cyrillic'],
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,16 +16,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: Readonly<{
   children: React.ReactNode
+  authModal: React.ReactNode
 }>) {
   return (
-    <html
-      lang="uk"
-      className={cn('bg-background font-sans antialiased', inter.className)}
-    >
+    <html lang="uk" className={cn('bg-background antialiased', font.className)}>
       <body className="min-h-screen">
         <Navbar />
+
+        {authModal}
+
         <div className="container max-w-7xl mx-auto h-full pt-12">
           {children}
         </div>

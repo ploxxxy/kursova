@@ -5,14 +5,23 @@ import UserAuthForm from './UserAuthForm'
 
 const Login: FC = () => {
   return (
-    <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
-      <div className="flex flex-col space-y-2 text-center">
-        <Icons.logo className="mx-auto h-6 w-6" />
-        <h1 className="text-2xl font-semibold tracking-tight">
+    <div className="container mx-auto flex w-full flex-col justify-center sm:w-[400px]">
+      <div className="flex flex-col text-center gap-2">
+        <div className="flex justify-center gap-2 items-center">
+          <Icons.logo className="h-8 w-8" />
+          <h1 className="text-3xl font-bold">Веб-форум ЄУ</h1>
+        </div>
+        <h3 className="text-2xl font-semibold tracking-tight">
           Ласкаво просимо
-        </h1>
-        <p className="text-sm max-w-xs mx-auto">
-          By continuing, you agree to our User Agreement and Privacy Policy
+        </h3>
+        <p className="text-sm mx-auto">
+          Для авторизації на нашому порталі, будь ласка, використайте свій
+          Корпоративний акаунт Європейського університету (закінчується на
+          @e-u.edu.ua)
+        </p>
+
+        <p className="text-sm max-w-xs mx-auto text-zinc-500 my-4">
+          Після продовження, Ви надаєте згоду на обробку персональних даних
         </p>
 
         <UserAuthForm />
@@ -20,7 +29,9 @@ const Login: FC = () => {
         <p className="px-8 text-center text-sm text-zinc-500">
           Не маєш акаунту?{' '}
           <Link
-            href="/register"
+            href="https://e-u.edu.ua/ua/"
+            rel="noreferrer noopener"
+            target="_blank"
             className="hover:text-zinc-800 text-sm underline underline-offset-2"
           >
             Зареєструватися
