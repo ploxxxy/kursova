@@ -1,0 +1,1 @@
+export const INFINE_SCROLLING_PAGE_SIZE = 2

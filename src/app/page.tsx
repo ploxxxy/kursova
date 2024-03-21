@@ -12,13 +12,13 @@ export default function Home() {
         {/* subforum info */}
         <div className="overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
           <div className="bg-orange-200 px-6 py-4">
-            <p className="font-semibold py-3 flex items-center gap-1 5">
+            <p className="font-semibold py-3 flex items-center gap-1">
               <HomeIcon className="w-4 h-4" />
               Домашня сторінка
             </p>
           </div>
 
-          <div className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+          <div className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6 bg-white">
             <div className="flex justify-between gap-x 4 py-3">
               <p className="text-zinc-500">
                 Твоя персоналізована домашня сторінка 🌞

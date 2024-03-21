@@ -1,6 +1,6 @@
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { SubforumValidator } from '@/lib/validators/subforum'
+import { SubforumSubscriptionValidator } from '@/lib/validators/subforum'
 import { z } from 'zod'
 
 export async function POST(req: Request) {
@@ -12,36 +12,29 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json()
-    const { name } = SubforumValidator.parse(body)
-
-    const subforumExists = await db.subforum.findFirst({
+    const { subforumId } = SubforumSubscriptionValidator.parse(body)
+    const subscription = await db.subscription.findFirst({
       where: {
-        name: name,
+        subforumId,
+        userId: session.user.id,
       },
     })
 
-    if (subforumExists) {
-      return new Response('Subforum already exists', { status: 409 })
+    if (subscription) {
+      return new Response('Already subscribed', { status: 400 })
     }
-
-    const subforum = await db.subforum.create({
-      data: {
-        name,
-        creatorId: session.user.id,
-      },
-    })
 
     await db.subscription.create({
       data: {
+        subforumId,
         userId: session.user.id,
-        subforumId: subforum.id,
       },
     })
 
-    return new Response(subforum.name, { status: 201 })
+    return new Response(subforumId, { status: 200 })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return new Response(error.message, { status: 400 })
+      return new Response('Invalid Request', { status: 400 })
     }
 
     return new Response('Internal Server Error', { status: 500 })

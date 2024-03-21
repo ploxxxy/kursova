@@ -10,7 +10,7 @@ const CloseModal = () => {
   return (
     <Button
       variant="subtle"
-      className="h-6 w-6 p-0 rounded-md"
+      className="h-6 w-6 rounded-md p-0"
       aria-label="Закрити вікно"
       onClick={() => router.back()}
     >

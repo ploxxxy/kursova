@@ -9,19 +9,17 @@ const Navbar = async () => {
   const session = await getSession()
 
   return (
-    <div className="fixed top-0 inset-x-0 bg-zinc-100 border-b border-zinc-300 z-[10] py-2">
-      <div className="container max-w-7xl h-full mx-auto flex items-center justify-between gap-2">
+    <div className="fixed inset-x-0 top-0 z-[10] border-b border-zinc-300 bg-zinc-100 py-2">
+      <div className="container mx-auto flex h-full max-w-7xl items-center justify-between gap-2">
         <Link
           href="/"
           className={cn('gap-2', buttonVariants({ variant: 'subtle' }))}
         >
           <Icons.logo className="h-8 w-8 sm:h-6 sm:w-6" />
-          <p className="hidden text-zinc-700 text-sm font-medium md:block">
+          <p className="hidden text-sm font-medium text-zinc-700 md:block">
             Форум
           </p>
         </Link>
-
-        {/* TODO: add a search bar */}
 
         {session?.user ? (
           <UserAccountNav user={session.user} />

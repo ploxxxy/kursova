@@ -35,7 +35,7 @@ const UserAuthForm: FC = () => {
         onClick={loginWithGoogle}
         className="w-full"
       >
-        {isLoading ? null : <Icons.google className="h-4 w-4 mr-2" />}
+        {isLoading ? null : <Icons.google className="mr-2 h-4 w-4" />}
         Google
       </Button>
     </div>

@@ -52,7 +52,7 @@ model User {
   Vote        Vote[]
 
   createdSubforums Subforum[]      @relation("CreatedBy")
-  Subscrtiption    Subscrtiption[]
+  Subscription    Subscription[]
 }
 
 model Subforum {
@@ -65,12 +65,12 @@ model Subforum {
 
   creatorId   String?
   creator     User?           @relation("CreatedBy", fields: [creatorId], references: [id])
-  subscribers Subscrtiption[]
+  subscribers Subscription[]
 
   @@index([name])
 }
 
-model Subscrtiption {
+model Subscription {
   user       User     @relation(fields: [userId], references: [id])
   userId     String
   subforum   Subforum @relation(fields: [subforumId], references: [id])
