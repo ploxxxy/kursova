@@ -6,21 +6,22 @@ import { cn } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'justify-center inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow hover:bg-primary/90',
+          'bg-primary text-primary-foreground shadow hover:bg-primary-400',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
+          'border border-secondary text-secondary bg-transparent shadow-sm hover:bg-background-50 dark:text-text-800 dark:border-text-800 hover:dark:bg-background-200',
         secondary:
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        ghost: 'hover:bg-background-50 text-background-400',
         link: 'text-primary underline-offset-4 hover:underline',
-        subtle: 'hover:bg-zinc-200 bg-zinc-100 text-zinc-900',
+        subtle:
+          'hover:bg-background-50 hover:dark:bg-background-200 bg-card border text-card-foreground',
       },
       size: {
         default: 'h-9 px-4 py-2',

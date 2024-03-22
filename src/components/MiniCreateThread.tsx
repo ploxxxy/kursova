@@ -21,8 +21,8 @@ const MiniCreateThread: FC<MiniCreateThreadProps> = ({ session }) => {
   }
 
   return (
-    <div className="overflow-hidden rounded-md bg-white shadow">
-      <div className="flex h-full justify-between gap-2 p-4">
+    <div className="overflow-hidden rounded-md bg-card shadow border">
+      <div className="flex h-full items-center justify-between gap-2 p-4">
         <div className="relative hidden sm:block">
           <UserAvatar
             user={{
@@ -31,15 +31,23 @@ const MiniCreateThread: FC<MiniCreateThreadProps> = ({ session }) => {
             }}
           />
 
-          <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 outline outline-2 outline-white" />
+          <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 outline outline-2 outline-card" />
         </div>
         <Input readOnly onClick={forwardToSubmit} placeholder="Створити тему" />
-        <Button onClick={forwardToSubmit} variant="outline">
-          <ImageIcon className="text-zinc-600" />
+        <Button
+          onClick={forwardToSubmit}
+          variant="ghost"
+          className="aspect-square p-0"
+        >
+          <ImageIcon />
         </Button>
 
-        <Button onClick={forwardToSubmit} variant="outline">
-          <Link2 className="text-zinc-600" />
+        <Button
+          onClick={forwardToSubmit}
+          variant="ghost"
+          className="aspect-square p-0"
+        >
+          <Link2 />
         </Button>
       </div>
     </div>

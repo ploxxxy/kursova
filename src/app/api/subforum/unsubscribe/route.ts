@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       },
     })
 
-    if (subscription) {
+    if (!subscription) {
       return new Response('Not subscribed', { status: 400 })
     }
 

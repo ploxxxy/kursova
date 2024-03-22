@@ -7,6 +7,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const formatTime = (date: Date, options?: Intl.DateTimeFormatOptions) => {
+  return date.toLocaleDateString(
+    'uk-UA',
+    options || {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    },
+  )
+}
+
 const formatDistanceLocale = {
   lessThanXSeconds: 'just now',
   xSeconds: 'just now',

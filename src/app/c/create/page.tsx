@@ -59,9 +59,9 @@ const Page = () => {
 
   return (
     <div className="container mx-auto flex h-full max-w-3xl items-center">
-      <div className="relative h-fit w-full space-y-6 rounded-lg bg-white p-4">
+      <div className="relative h-fit w-full space-y-4 rounded-lg bg-card border p-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold">Створити форум</h1>
+          <h1 className="text-2xl font-semibold">Створити форум</h1>
         </div>
 
         <hr className="h-px bg-zinc-500" />
@@ -69,7 +69,7 @@ const Page = () => {
         <div>
           <p className="-mb-1 text-lg font-medium">Назва</p>
           <p className="pb-2 text-xs text-zinc-400">
-            Назву форуму та формат тексту не можна буде змінити
+            Назву форуму та формат тексту (великі літери) не можна буде змінити
           </p>
 
           <div className="relative">
@@ -84,7 +84,7 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="jsutify-end flex gap-4">
+        <div className="jsutify-end flex gap-3">
           <Button variant="subtle" onClick={() => router.back()}>
             Скасувати
           </Button>
