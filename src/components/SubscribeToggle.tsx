@@ -93,7 +93,7 @@ const SubscribeToggle: FC<SubscribeToggleProps> = ({
   return isSubscribed ? (
     <Button
       isLoading={isPendingUnsubscription}
-      className="my-1 w-full"
+      className="my-2 w-full"
       onClick={() => unsubscribe()}
     >
       Покинути форум
@@ -101,7 +101,8 @@ const SubscribeToggle: FC<SubscribeToggleProps> = ({
   ) : (
     <Button
       isLoading={isPendingSubscription}
-      className="my-1 w-full"
+      className="my-2 w-full"
+      variant='secondary'
       onClick={() => subscribe()}
     >
       Приєднатися

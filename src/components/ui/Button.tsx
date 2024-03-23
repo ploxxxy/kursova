@@ -6,19 +6,19 @@ import { cn } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 
 const buttonVariants = cva(
-  'justify-center inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'justify-center inline-flex items-center whitespace-nowrap rounded-full text-sm transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 font-bold',
   {
     variants: {
       variant: {
         default:
-          'bg-primary text-primary-foreground shadow hover:bg-primary-400',
+          'bg-primary text-primary-foreground shadow hover:bg-primary-400 ',
         destructive:
           'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
         outline:
-          'border border-secondary text-secondary bg-transparent shadow-sm hover:bg-background-50 dark:text-text-800 dark:border-text-800 hover:dark:bg-background-200',
+          'border border-secondary text-secondary bg-transparent shadow-sm hover:bg-background-50 dark:text-text-900 dark:border-text-900 hover:dark:bg-zinc-950',
         secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-background-50 text-background-400',
+          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary-400 dark:bg-text-900 dark:text-text-50 hover:dark:bg-text-800',
+        ghost: 'hover:bg-background-50 text-background-400 rounded-md',
         link: 'text-primary underline-offset-4 hover:underline',
         subtle:
           'hover:bg-background-50 hover:dark:bg-background-200 bg-card border text-card-foreground',

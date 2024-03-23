@@ -31,6 +31,7 @@ const UserAuthForm: FC = () => {
   return (
     <div className={'flex justify-center'}>
       <Button
+        variant="outline"
         isLoading={isLoading}
         onClick={loginWithGoogle}
         className="w-full"

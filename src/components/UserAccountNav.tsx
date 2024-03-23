@@ -1,17 +1,18 @@
 'use client'
 
 import { User } from 'next-auth'
+import { signOut } from 'next-auth/react'
+import Link from 'next/link'
 import { FC } from 'react'
+import UserAvatar from './UserAvatar'
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuSeparator,
   DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from './ui/DropdownMenu'
-import UserAvatar from './UserAvatar'
-import Link from 'next/link'
-import { signOut } from 'next-auth/react'
+import ThemeSwitch from './ThemeSwitch'
 
 interface UserAccountNavProps {
   user: Pick<User, 'name' | 'image' | 'email'>
@@ -52,6 +53,10 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
         <DropdownMenuItem asChild>
           <Link href="/settings">Налаштування</Link>
         </DropdownMenuItem>
+
+        <DropdownMenuSeparator />
+
+        <ThemeSwitch />
 
         <DropdownMenuSeparator />
 

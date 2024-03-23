@@ -64,7 +64,7 @@ const config = {
         },
         secondary: {
           DEFAULT: 'var(--secondary-500)',
-          foreground: 'var(--secondary-900)',
+          foreground: '#ffffff',
           50: 'var(--secondary-50)',
           100: 'var(--secondary-100)',
           200: 'var(--secondary-200)',

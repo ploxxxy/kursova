@@ -20,13 +20,13 @@ const Login: FC = () => {
           @e-u.edu.ua)
         </p>
 
-        <p className="mx-auto my-4 max-w-xs text-sm text-zinc-500">
+        <p className="mx-auto my-4 max-w-xs text-sm text-muted-foreground">
           Після продовження, Ви надаєте згоду на обробку персональних даних
         </p>
 
         <UserAuthForm />
 
-        <p className="px-8 text-center text-sm text-zinc-500">
+        <p className="px-8 text-center text-sm text-muted-foreground">
           Не маєш акаунту?{' '}
           <Link
             href="https://e-u.edu.ua/ua/"
