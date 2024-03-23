@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk" className={cn('antialiased', font.className)}>
-      <body className="min-h-screen bg-background">
+      <body className="min-h-screen">
         <Providers>
           <Navbar />
 

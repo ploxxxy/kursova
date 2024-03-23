@@ -50,6 +50,11 @@
 } */
 
 @layer base {
+  ::selection {
+    background-color: var(--primary);
+    color: white;
+  }
+
   :root {
     --text: #1c1c1c;
     --text-50: #f2f2f2;

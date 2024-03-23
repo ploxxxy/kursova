@@ -32,7 +32,7 @@ const Login: FC = () => {
             href="https://e-u.edu.ua/ua/"
             rel="noreferrer noopener"
             target="_blank"
-            className="text-sm underline underline-offset-2 hover:text-zinc-800"
+            className="text-sm underline underline-offset-2 hover:text-text"
           >
             Зареєструватися
           </Link>

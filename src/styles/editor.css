@@ -1,0 +1,90 @@
+.ce-toolbar {
+  left: unset !important;
+}
+
+.cdx-block,
+.ce-header,
+.inlineToolButton,
+.ce-toolbar__plus,
+.ce-toolbar__settings-btn,
+.ce-popover__search {
+  background-color: var(--card);
+  color: var(--text);
+}
+
+.ce-toolbar__plus:hover,
+.ce-toolbar__settings-btn:hover,
+.cdx-loader,
+.cdx-button {
+  color: var(--text);
+  background-color: var(--muted);
+}
+
+.cdx-button:hover {
+  background-color: var(--card);
+}
+
+.ce-popover,
+.ce-popover-item,
+.ce-popover-item__icon,
+.ce-popover-items,
+.ce-inline-toolbar,
+.ce-conversion-toolbar,
+.ce-conversion-tool__icon {
+  background-color: var(--muted);
+  color: var(--text);
+}
+
+.ce-popover,
+.ce-popover-item__icon,
+.ce-inline-toolbar,
+.ce-conversion-toolbar,
+.ce-conversion-tool__icon {
+  border: 1px solid var(--border);
+  box-shadow: none;
+  --webkit-box-shadow: none;
+}
+
+.ce-popover-item:hover,
+.ce-inline-tool:hover,
+.ce-conversion-tool:hover,
+.ce-inline-toolbar__dropdown:hover {
+  background-color: var(--card) !important;
+}
+
+.ce-paragraph[data-placeholder]:empty::before {
+  color: var(--muted-foreground) !important;
+}
+
+.codex-editor ::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+.ct::after {
+  background-color: var(--card);
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.ct::before {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+}
+
+.ct__content {
+  color: var(--text);
+}
+
+div.cdx-notify--error {
+  background: var(--destructive) !important;
+  color: var(--destructive-foreground) !important;
+}
+
+div.cdx-notify--error::before {
+  display: none;
+}
+
+.ce-block__content {
+  margin: unset;
+}
