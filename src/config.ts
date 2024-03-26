@@ -1,6 +1,6 @@
 import { I18nConfig } from '@editorjs/editorjs'
 
-export const INFINE_SCROLLING_PAGE_SIZE = 2
+export const INFINE_SCROLLING_PAGE_SIZE = 3
 
 export const UkrainianEditorLocale: I18nConfig = {
   messages: {

@@ -7,7 +7,7 @@ const ThemeSwitch: FC = () => {
   const { theme, setTheme } = useTheme()
 
   return (
-    <div className="flex items-center justify-between space-x-2 p-2">
+    <div className="flex items-center justify-between gap-x-2 p-2">
       <Label htmlFor="theme-switch">Світла тема</Label>
       <Switch
         checked={theme === 'light'}

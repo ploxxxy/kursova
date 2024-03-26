@@ -1,4 +1,5 @@
 import MiniCreateThread from '@/components/MiniCreateThread'
+import ThreadFeed from '@/components/ThreadFeed'
 import { INFINE_SCROLLING_PAGE_SIZE } from '@/config'
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
@@ -39,8 +40,8 @@ const page: FC<PageProps> = async ({ params }) => {
 
   return (
     <>
-      <h1 className="h-14 text-3xl font-bold md:text-4xl">c/{subforum.name}</h1>
       <MiniCreateThread session={session} />
+      <ThreadFeed initialThreads={subforum.threads} subforumName={subforum.name} />
     </>
   )
 }

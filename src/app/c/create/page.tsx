@@ -59,7 +59,7 @@ const Page = () => {
 
   return (
     <div className="container mx-auto flex h-full max-w-3xl items-center">
-      <div className="relative h-fit w-full space-y-4 rounded-lg bg-card border p-4">
+      <div className="relative h-fit w-full gap-y-4 rounded-lg bg-card border p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Створити форум</h1>
         </div>

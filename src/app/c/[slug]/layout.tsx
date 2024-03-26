@@ -54,59 +54,58 @@ const Layout = async ({
 
   return (
     <div className="mx-auto h-full max-w-7xl sm:container">
-      <div>
-        <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
-          <div className="col-span-2 flex flex-col space-y-6">{children}</div>
+      <h1 className="text-3xl font-bold md:text-4xl">c/{subforum.name}</h1>
+      <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
+        <div className="col-span-2 flex flex-col gap-4">{children}</div>
 
-          <div className="order-first hidden h-fit overflow-hidden rounded-lg border shadow md:order-last md:block">
-            <div className="bg-secondary px-6 py-4">
-              <p className="font-semibold text-secondary-foreground">
-                Про c/{subforum.name}
-              </p>
+        <div className="order-first h-fit overflow-hidden rounded-lg border shadow md:order-last md:block">
+          <div className="bg-secondary px-6 py-4">
+            <p className="font-semibold text-secondary-foreground">
+              Про c/{subforum.name}
+            </p>
+          </div>
+
+          <dl className="bg-card px-6 py-4 text-sm leading-6">
+            <div className="flex justify-between gap-x-4 py-1">
+              <dt className="text-muted-foreground">Створено</dt>
+              <dd>
+                <time dateTime={subforum.createdAt.toString()}>
+                  {formatTime(subforum.createdAt)}
+                </time>
+              </dd>
             </div>
 
-            <dl className="bg-card px-6 py-4 text-sm leading-6">
-              <div className="flex justify-between gap-x-4 py-1">
-                <dt className="text-muted-foreground">Створено</dt>
-                <dd>
-                  <time dateTime={subforum.createdAt.toString()}>
-                    {formatTime(subforum.createdAt)}
-                  </time>
-                </dd>
+            <div className="flex justify-between gap-x-4 py-1">
+              <dt className="text-muted-foreground">Учасників</dt>
+              <dd>
+                <div>{memberCount}</div>
+              </dd>
+            </div>
+
+            <hr className="my-3 h-px" />
+
+            {subforum.creatorId === session?.user.id ? (
+              <div className="flex justify-between gap-x-4 py-3">
+                <p>Ви створили цей форум</p>
               </div>
+            ) : (
+              <SubscribeToggle
+                subforumId={subforum.id}
+                subforumName={subforum.name}
+                isSubscribed={isSubscribed}
+              />
+            )}
 
-              <div className="flex justify-between gap-x-4 py-1">
-                <dt className="text-muted-foreground">Учасників</dt>
-                <dd>
-                  <div>{memberCount}</div>
-                </dd>
-              </div>
-
-              <hr className="h-px my-3" />
-
-              {subforum.creatorId === session?.user.id ? (
-                <div className="flex justify-between gap-x-4 py-3">
-                  <p>Ви створили цей форум</p>
-                </div>
-              ) : (
-                <SubscribeToggle
-                  subforumId={subforum.id}
-                  subforumName={subforum.name}
-                  isSubscribed={isSubscribed}
-                />
-              )}
-
-              <Link
-                href={`/c/${slug}/submit`}
-                className={buttonVariants({
-                  variant: 'outline',
-                  className: 'w-full',
-                })}
-              >
-                Створити тему
-              </Link>
-            </dl>
-          </div>
+            <Link
+              href={`/c/${slug}/submit`}
+              className={buttonVariants({
+                variant: 'outline',
+                className: 'w-full',
+              })}
+            >
+              Створити тему
+            </Link>
+          </dl>
         </div>
       </div>
     </div>
