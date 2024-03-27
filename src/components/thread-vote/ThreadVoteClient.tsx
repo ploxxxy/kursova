@@ -1,16 +1,16 @@
 'use client'
 
 import { useCustomToast } from '@/hooks/use-custom-toast'
+import { toast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
 import { ThreadVoteRequest } from '@/lib/validators/vote'
 import { usePrevious } from '@mantine/hooks'
 import { VoteType } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
+import axios, { AxiosError } from 'axios'
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
 import { FC, useEffect, useState } from 'react'
 import { Button } from '../ui/Button'
-import axios, { AxiosError } from 'axios'
-import { toast } from '@/hooks/use-toast'
 
 interface ThreadVoteClientProps {
   threadId: string
@@ -76,23 +76,26 @@ const ThreadVoteClient: FC<ThreadVoteClientProps> = ({
   })
 
   return (
-    <div className="flex flex-col px-3 pt-8">
+    <div className="flex flex-col px-3">
       <Button
         onClick={() => mutate('UPVOTE')}
         size="sm"
         variant="ghost"
-        className="hover:bg-unset -mb-2 p-0 hover:text-primary-400"
+        className="hover:bg-unset -mb-2 p-0 hover:text-green-500"
         aria-label="upvote"
       >
         <ArrowBigUp
           className={cn(
-            'h-5 w-5',
-            currentVote === 'UPVOTE' && 'fill-primary text-primary',
+            'h-6 w-6',
+            currentVote === 'UPVOTE' && 'fill-green-500 text-green-500',
           )}
         />
       </Button>
 
-      <p className="py-2 text-center text-sm font-medium text-text-950">
+      <p
+        className="py-2 text-center text-sm font-medium text-text-950"
+        suppressHydrationWarning
+      >
         {voteAmount}
       </p>
 
@@ -100,13 +103,13 @@ const ThreadVoteClient: FC<ThreadVoteClientProps> = ({
         onClick={() => mutate('DOWNVOTE')}
         size="sm"
         variant="ghost"
-        className="hover:bg-unset -mt-2 p-0 hover:text-secondary-200"
+        className="hover:bg-unset -mt-2 p-0 hover:text-red-500"
         aria-label="upvote"
       >
         <ArrowBigDown
           className={cn(
-            'h-5 w-5',
-            currentVote === 'DOWNVOTE' && 'fill-secondary text-secondary',
+            'h-6 w-6',
+            currentVote === 'DOWNVOTE' && 'fill-red-500 text-red-500',
           )}
         />
       </Button>

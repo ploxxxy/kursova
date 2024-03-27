@@ -1,5 +1,5 @@
-import PersonalFeed from '@/components/feed/PersonalFeed'
 import GeneralFeed from '@/components/feed/GeneralFeed'
+import PersonalFeed from '@/components/feed/PersonalFeed'
 import { buttonVariants } from '@/components/ui/Button'
 import { getSession } from '@/lib/auth'
 import { HomeIcon } from 'lucide-react'

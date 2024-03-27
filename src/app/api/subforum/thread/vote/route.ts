@@ -87,9 +87,9 @@ export async function PATCH(req: Request) {
           title: thread.title,
           authorName: thread.author.name ?? '',
           content: JSON.stringify(thread.content),
-          currentVote: voteType,
-          createdAt: thread.createdAt.toString(),
+          createdAt: thread.createdAt.toISOString(),
         })
+        await redis.expire(`thread:${threadId}`, 60 * 60 * 24)
       }
 
       return new Response('Vote updated', { status: 200 })
@@ -116,9 +116,9 @@ export async function PATCH(req: Request) {
         title: thread.title,
         authorName: thread.author.name ?? '',
         content: JSON.stringify(thread.content),
-        currentVote: voteType,
-        createdAt: thread.createdAt.toString(),
+        createdAt: thread.createdAt.toISOString(),
       })
+      await redis.expire(`thread:${threadId}`, 60 * 60 * 24)
     }
 
     return new Response('Vote created', { status: 201 })

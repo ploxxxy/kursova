@@ -2,53 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
-  :root {
-    --background: #030303;
-    --foreground: #d7dadc;
-    --card: #1a1a1b;
-    --card-foreground: #cfcfcf;
-    --popover: #1a1a1b;
-    --popover-foreground: #818384;
-    --primary: #ff4500;
-    --primary-foreground: #ffffff;
-    --secondary: #0079d3;
-    --secondary-foreground: #ffffff;
-    --muted: #5c5d5e;
-    --muted-foreground: #818384;
-    --accent: #8eef97;
-    --accent-foreground: #548659;
-    --destructive: hsl(0 84.2% 60.2%);
-    --destructive-foreground: hsl(60 9.1% 97.8%);
-    --border: #343536;
-    --input: #343536;
-    --ring: #343536%;
-    --radius: 0.3rem;
-  }
-
-  .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 60 9.1% 97.8%;
-    --card: 20 14.3% 4.1%;
-    --card-foreground: 60 9.1% 97.8%;
-    --popover: 20 14.3% 4.1%;
-    --popover-foreground: 60 9.1% 97.8%;
-    --primary: 20.5 90.2% 48.2%;
-    --primary-foreground: 60 9.1% 97.8%;
-    --secondary: 12 6.5% 15.1%;
-    --secondary-foreground: 60 9.1% 97.8%;
-    --muted: 12 6.5% 15.1%;
-    --muted-foreground: 24 5.4% 63.9%;
-    --accent: 12 6.5% 15.1%;
-    --accent-foreground: 60 9.1% 97.8%;
-    --destructive: 0 72.2% 50.6%;
-    --destructive-foreground: 60 9.1% 97.8%;
-    --border: 12 6.5% 15.1%;
-    --input: 12 6.5% 15.1%;
-    --ring: 20.5 90.2% 48.2%;
-  }
-} */
-
 @layer base {
   ::selection {
     background-color: var(--primary);
@@ -56,170 +9,170 @@
   }
 
   :root {
-    --text: #1c1c1c;
-    --text-50: #f2f2f2;
-    --text-100: #e6e6e6;
-    --text-200: #cccccc;
-    --text-300: #b3b3b3;
-    --text-400: #999999;
-    --text-500: #808080;
-    --text-600: #666666;
-    --text-700: #4d4d4d;
-    --text-800: #333333;
-    --text-900: #1a1a1a;
-    --text-950: #0d0d0d;
+    --text: 28, 28, 28;
+    --text-50: 242, 242, 242;
+    --text-100: 230, 230, 230;
+    --text-200: 204, 204, 204;
+    --text-300: 179, 179, 179;
+    --text-400: 153, 153, 153;
+    --text-500: 128, 128, 128;
+    --text-600: 102, 102, 102;
+    --text-700: 77, 77, 77;
+    --text-800: 51, 51, 51;
+    --text-900: 26, 26, 26;
+    --text-950: 13, 13, 13;
 
-    --background: #dae0e6;
-    --background-50: #f0f2f5;
-    --background-100: #e1e6ea;
-    --background-200: #c2ccd6;
-    --background-300: #a4b3c1;
-    --background-400: #8699ac;
-    --background-500: #677f98;
-    --background-600: #536679;
-    --background-700: #3e4c5b;
-    --background-800: #29333d;
-    --background-900: #15191e;
-    --background-950: #0a0d0f;
+    --background: 218, 224, 230;
+    --background-50: 240, 242, 245;
+    --background-100: 225, 230, 234;
+    --background-200: 194, 204, 214;
+    --background-300: 164, 179, 193;
+    --background-400: 134, 153, 172;
+    --background-500: 103, 127, 152;
+    --background-600: 83, 102, 121;
+    --background-700: 62, 76, 91;
+    --background-800: 41, 51, 61;
+    --background-900: 21, 25, 30;
+    --background-950: 10, 13, 15;
 
-    --primary: #ff5414;
-    --primary-50: #ffece5;
-    --primary-100: #ffdacc;
-    --primary-200: #ffb499;
-    --primary-300: #ff8f66;
-    --primary-400: #ff6933;
-    --primary-500: #ff4400;
-    --primary-600: #cc3600;
-    --primary-700: #992900;
-    --primary-800: #661b00;
-    --primary-900: #330e00;
-    --primary-950: #1a0700;
+    --primary: 255, 84, 20;
+    --primary-50: 255, 236, 229;
+    --primary-100: 255, 218, 204;
+    --primary-200: 255, 180, 153;
+    --primary-300: 255, 143, 102;
+    --primary-400: 255, 105, 51;
+    --primary-500: 255, 68, 0;
+    --primary-600: 204, 54, 0;
+    --primary-700: 153, 41, 0;
+    --primary-800: 102, 27, 0;
+    --primary-900: 51, 14, 0;
+    --primary-950: 26, 7, 0;
 
-    --secondary: #0079d3;
-    --secondary-50: #e5f4ff;
-    --secondary-100: #cce9ff;
-    --secondary-200: #99d3ff;
-    --secondary-300: #66bdff;
-    --secondary-400: #33a7ff;
-    --secondary-500: #0091ff;
-    --secondary-600: #0074cc;
-    --secondary-700: #005799;
-    --secondary-800: #003a66;
-    --secondary-900: #001d33;
-    --secondary-950: #000e1a;
+    --secondary: 0, 121, 211;
+    --secondary-50: 229, 244, 255;
+    --secondary-100: 204, 233, 255;
+    --secondary-200: 153, 211, 255;
+    --secondary-300: 102, 189, 255;
+    --secondary-400: 51, 167, 255;
+    --secondary-500: 0, 145, 255;
+    --secondary-600: 0, 116, 204;
+    --secondary-700: 0, 87, 153;
+    --secondary-800: 0, 58, 102;
+    --secondary-900: 0, 29, 51;
+    --secondary-950: 0, 14, 26;
 
-    --accent: #24d6ff;
-    --accent-50: #e5faff;
-    --accent-100: #ccf6ff;
-    --accent-200: #99ecff;
-    --accent-300: #66e3ff;
-    --accent-400: #33daff;
-    --accent-500: #00d0ff;
-    --accent-600: #00a7cc;
-    --accent-700: #007d99;
-    --accent-800: #005366;
-    --accent-900: #002a33;
-    --accent-950: #00151a;
+    --accent: 36, 214, 255;
+    --accent-50: 229, 250, 255;
+    --accent-100: 204, 246, 255;
+    --accent-200: 153, 236, 255;
+    --accent-300: 102, 227, 255;
+    --accent-400: 51, 218, 255;
+    --accent-500: 0, 208, 255;
+    --accent-600: 0, 167, 204;
+    --accent-700: 0, 125, 153;
+    --accent-800: 0, 83, 102;
+    --accent-900: 0, 42, 51;
+    --accent-950: 0, 21, 26;
 
     --radius: 0.3rem;
-    --border: #cccccc;
-    --input: #cccccc;
+    --border: 204, 204, 204;
+    --input: 204, 204, 204;
 
-    --card: #ffffff;
-    --card-foreground: #222222;
+    --card: 255, 255, 255;
+    --card-foreground: 34, 34, 34;
 
-    --popover: #ffffff;
-    --popover-foreground: #222222;
+    --popover: 255, 255, 255;
+    --popover-foreground: 34, 34, 34;
 
-    --muted: #f7f9fa;
-    --muted-foreground: #878a8c;
+    --muted: 247, 249, 250;
+    --muted-foreground: 135, 138, 140;
 
-    --destructive: #b61515;
-    --destructive-foreground: #ffffff;
+    --destructive: 182, 21, 21;
+    --destructive-foreground: 255, 255, 255;
 
     --ring: var(--secondary);
   }
 
   .dark {
-    --text: #d7dadc;
-    --text-50: #0d0d0d;
-    --text-100: #1a1a1a;
-    --text-200: #333333;
-    --text-300: #4d4d4d;
-    --text-400: #666666;
-    --text-500: #808080;
-    --text-600: #999999;
-    --text-700: #b3b3b3;
-    --text-800: #cccccc;
-    --text-900: #e6e6e6;
-    --text-950: #f2f2f2;
+    --text: 215, 218, 220;
+    --text-50: 13, 13, 13;
+    --text-100: 26, 26, 26;
+    --text-200: 51, 51, 51;
+    --text-300: 77, 77, 77;
+    --text-400: 102, 102, 102;
+    --text-500: 128, 128, 128;
+    --text-600: 153, 153, 153;
+    --text-700: 179, 179, 179;
+    --text-800: 204, 204, 204;
+    --text-900: 230, 230, 230;
+    --text-950: 242, 242, 242;
 
-    --background: #030303;
-    --background-50: #0d0d0d;
-    --background-100: #1a1a1a;
-    --background-200: #333333;
-    --background-300: #4d4d4d;
-    --background-400: #666666;
-    --background-500: #808080;
-    --background-600: #999999;
-    --background-700: #b3b3b3;
-    --background-800: #cccccc;
-    --background-900: #e6e6e6;
-    --background-950: #f2f2f2;
+    --background: 3, 3, 3;
+    --background-50: 13, 13, 13;
+    --background-100: 26, 26, 26;
+    --background-200: 51, 51, 51;
+    --background-300: 77, 77, 77;
+    --background-400: 102, 102, 102;
+    --background-500: 128, 128, 128;
+    --background-600: 153, 153, 153;
+    --background-700: 179, 179, 179;
+    --background-800: 204, 204, 204;
+    --background-900: 230, 230, 230;
+    --background-950: 242, 242, 242;
 
-    --primary: #ff5414;
-    --primary-50: #ffece5;
-    --primary-100: #ffdacc;
-    --primary-200: #ffb499;
-    --primary-300: #ff8f66;
-    --primary-400: #ff6933;
-    --primary-500: #ff4400;
-    --primary-600: #cc3600;
-    --primary-700: #992900;
-    --primary-800: #661b00;
-    --primary-900: #330e00;
-    --primary-950: #1a0700;
+    --primary: 255, 84, 20;
+    --primary-50: 255, 236, 229;
+    --primary-100: 255, 218, 204;
+    --primary-200: 255, 180, 153;
+    --primary-300: 255, 143, 102;
+    --primary-400: 255, 105, 51;
+    --primary-500: 255, 68, 0;
+    --primary-600: 204, 54, 0;
+    --primary-700: 153, 41, 0;
+    --primary-800: 102, 27, 0;
+    --primary-900: 51, 14, 0;
+    --primary-950: 26, 7, 0;
 
-    --secondary: #0079d3;
-    --secondary-50: #e5f4ff;
-    --secondary-100: #cce9ff;
-    --secondary-200: #99d3ff;
-    --secondary-300: #66bdff;
-    --secondary-400: #33a7ff;
-    --secondary-500: #0091ff;
-    --secondary-600: #0074cc;
-    --secondary-700: #005799;
-    --secondary-800: #003a66;
-    --secondary-900: #001d33;
-    --secondary-950: #000e1a;
+    --secondary: 0, 121, 211;
+    --secondary-50: 229, 244, 255;
+    --secondary-100: 204, 233, 255;
+    --secondary-200: 153, 211, 255;
+    --secondary-300: 102, 189, 255;
+    --secondary-400: 51, 167, 255;
+    --secondary-500: 0, 145, 255;
+    --secondary-600: 0, 116, 204;
+    --secondary-700: 0, 87, 153;
+    --secondary-800: 0, 58, 102;
+    --secondary-900: 0, 29, 51;
+    --secondary-950: 0, 14, 26;
 
-    --accent: #00b3db;
-    --accent-50: #00151a;
-    --accent-100: #002a33;
-    --accent-200: #005366;
-    --accent-300: #007d99;
-    --accent-400: #00a7cc;
-    --accent-500: #00d0ff;
-    --accent-600: #33daff;
-    --accent-700: #66e3ff;
-    --accent-800: #99ecff;
-    --accent-900: #ccf6ff;
-    --accent-950: #e5faff;
+    --accent: 0, 179, 219;
+    --accent-50: 0, 21, 26;
+    --accent-100: 0, 42, 51;
+    --accent-200: 0, 83, 102;
+    --accent-300: 0, 125, 153;
+    --accent-400: 0, 167, 204;
+    --accent-500: 0, 208, 255;
+    --accent-600: 51, 218, 255;
+    --accent-700: 102, 227, 255;
+    --accent-800: 153, 236, 255;
+    --accent-900: 204, 246, 255;
+    --accent-950: 229, 250, 255;
 
-    --border: #343536;
-    --input: #343536;
+    --border: 52, 53, 54;
+    --input: 52, 53, 54;
 
-    --card: #1a1a1b;
-    --card-foreground: #818384;
+    --card: 26, 26, 27;
+    --card-foreground: 129, 131, 132;
 
-    --popover: #1a1a1b;
-    --popover-foreground: #818384;
+    --popover: 26, 26, 27;
+    --popover-foreground: 129, 131, 132;
 
-    --muted: #151516;
-    --muted-foreground: #5a5c5e;
+    --muted: 21, 21, 22;
+    --muted-foreground: 90, 92, 94;
 
-    --destructive: #b61515;
-    --destructive-foreground: #ffffff;
+    --destructive: 182, 21, 21;
+    --destructive-foreground: 255, 255, 255;
 
     --ring: var(--secondary);
   }

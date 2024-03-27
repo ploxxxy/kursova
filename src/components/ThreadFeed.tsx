@@ -6,8 +6,9 @@ import { useIntersection } from '@mantine/hooks'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
-import { FC, useEffect, useRef } from 'react'
+import { FC, Suspense, useEffect, useRef } from 'react'
 import Thread from './Thread'
+import SkeletonFeed from './feed/SkeletonFeed'
 
 interface ThreadFeedProps {
   initialThreads: ExtendedThread[]
@@ -52,29 +53,34 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
 
   return (
     <div className="col-span-2 flex flex-col gap-y-4">
-      {threads.map((thread, index) => {
-        const voteAmount = thread.votes.reduce((acc, vote) => {
-          if (vote.type === 'UPVOTE') return acc + 1
-          if (vote.type === 'DOWNVOTE') return acc - 1
-          return acc
-        }, 0)
+      <Suspense fallback={<SkeletonFeed />}>
+        {threads.map((thread, index) => {
+          const voteAmount = thread.votes.reduce((acc, vote) => {
+            if (vote.type === 'UPVOTE') return acc + 1
+            if (vote.type === 'DOWNVOTE') return acc - 1
+            return acc
+          }, 0)
 
-        const currentVote = thread.votes.find(
-          (vote) => vote.userId === session?.user.id,
-        )
+          const currentVote = thread.votes.find(
+            (vote) => vote.userId === session?.user.id,
+          )
 
-        return (
-          <div key={thread.id} ref={index === threads.length - 1 ? ref : null}>
-            <Thread
-              subforumName={thread.subforum.name}
-              thread={thread}
-              commentAmount={thread.comments.length}
-              currentVote={currentVote}
-              voteAmount={voteAmount}
-            />
-          </div>
-        )
-      })}
+          return (
+            <div
+              key={thread.id}
+              ref={index === threads.length - 1 ? ref : null}
+            >
+              <Thread
+                subforumName={thread.subforum.name}
+                thread={thread}
+                commentAmount={thread.comments.length}
+                currentVote={currentVote}
+                voteAmount={voteAmount}
+              />
+            </div>
+          )
+        })}
+      </Suspense>
     </div>
   )
 }

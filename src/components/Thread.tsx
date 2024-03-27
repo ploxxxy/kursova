@@ -69,13 +69,13 @@ const Thread: FC<ThreadProps> = ({
           </a>
 
           <div
-            className="relative max-h-40 w-full overflow-clip text-sm"
+            className="relative max-h-80 w-full overflow-clip text-sm"
             ref={threadRef}
           >
             <EditorOutput content={thread.content} />
 
-            {threadRef.current?.clientHeight === 160 ? (
-              <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-card to-transparent" />
+            {threadRef.current?.clientHeight === 320 ? (
+              <div className="absolute bottom-0 left-0 h-48 w-full bg-gradient-to-t from-card to-transparent" />
             ) : null}
           </div>
         </div>

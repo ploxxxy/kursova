@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { FC } from 'react'
@@ -27,12 +29,9 @@ const renderers = {
 
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
   return (
-    <Output
-      className="text-sm"
-      style={style}
-      renderers={renderers}
-      data={content}
-    />
+    <div className="prose prose-sm prose-stone dark:prose-invert">
+      <Output style={style} renderers={renderers} data={content} />
+    </div>
   )
 }
 
@@ -50,14 +49,16 @@ function CustomImageRenderer({ data }: { data: ImageProps }) {
   const src = data.file.url
 
   return (
-    <div className="relative min-h-[15rem] w-full">
+    <a className="relative min-h-[15rem]" href={src} target="_blank">
       <Image
         src={src}
-        className="object-contain"
-        fill
         alt={data.caption}
+        width={0}
+        height={0}
+        className="h-full w-full rounded-xl"
+        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
       />
-    </div>
+    </a>
   )
 }
 
@@ -66,7 +67,7 @@ interface CodeProps {
 }
 function CustomCodeRenderer({ data }: { data: CodeProps }) {
   return (
-    <pre className="rounded-md bg-background-50 p-4">
+    <pre className="my-4 rounded-md bg-background-50 p-4">
       <code className="text-sm text-foreground">{data.code}</code>
     </pre>
   )
