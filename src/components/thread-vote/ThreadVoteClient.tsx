@@ -43,16 +43,16 @@ const ThreadVoteClient: FC<ThreadVoteClientProps> = ({
       await axios.patch('/api/subforum/thread/vote', payload)
     },
     onError: (error, voteType) => {
+      if (voteType === 'UPVOTE') setVoteAmount((prev) => prev - 1)
+      else setVoteAmount((prev) => prev + 1)
+
+      setCurrentVote(previousVote)
+
       if (error instanceof AxiosError) {
         if (error.response?.status === 401) loginToast()
 
         return
       }
-
-      if (voteType === 'UPVOTE') setVoteAmount((prev) => prev - 1)
-      else setVoteAmount((prev) => prev + 1)
-
-      setCurrentVote(previousVote)
 
       return toast({
         title: 'Щось пішло не так...',

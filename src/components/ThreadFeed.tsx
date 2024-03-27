@@ -51,7 +51,7 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
   const threads = data?.pages.flatMap((page) => page) ?? initialThreads
 
   return (
-    <ul className="col-span-2 flex flex-col gap-y-4">
+    <div className="col-span-2 flex flex-col gap-y-4">
       {threads.map((thread, index) => {
         const voteAmount = thread.votes.reduce((acc, vote) => {
           if (vote.type === 'UPVOTE') return acc + 1
@@ -64,7 +64,7 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
         )
 
         return (
-          <li key={thread.id} ref={index === threads.length - 1 ? ref : null}>
+          <div key={thread.id} ref={index === threads.length - 1 ? ref : null}>
             <Thread
               subforumName={thread.subforum.name}
               thread={thread}
@@ -72,10 +72,10 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
               currentVote={currentVote}
               voteAmount={voteAmount}
             />
-          </li>
+          </div>
         )
       })}
-    </ul>
+    </div>
   )
 }
 

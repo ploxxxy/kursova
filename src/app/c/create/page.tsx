@@ -77,14 +77,14 @@ const Page = () => {
               c/
             </p>
             <Input
-              className="pl-6"
+              className="pl-6 mt-2"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="jsutify-end flex gap-3">
+        <div className="jsutify-end flex gap-3 mt-4">
           <Button variant="subtle" onClick={() => router.back()}>
             Скасувати
           </Button>
