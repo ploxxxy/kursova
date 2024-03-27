@@ -51,7 +51,12 @@ function CustomImageRenderer({ data }: { data: ImageProps }) {
 
   return (
     <div className="relative min-h-[15rem] w-full">
-      <Image src={src} className="object-contain" fill alt={data.caption} />
+      <Image
+        src={src}
+        className="object-contain"
+        fill
+        alt={data.caption}
+      />
     </div>
   )
 }

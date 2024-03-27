@@ -6,7 +6,7 @@ import { useIntersection } from '@mantine/hooks'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import Thread from './Thread'
 
 interface ThreadFeedProps {
@@ -42,6 +42,12 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
     initialData: { pages: [initialThreads], pageParams: [1] },
   })
 
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      fetchNextPage()
+    }
+  }, [entry, fetchNextPage])
+
   const threads = data?.pages.flatMap((page) => page) ?? initialThreads
 
   return (
@@ -63,6 +69,8 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
               subforumName={thread.subforum.name}
               thread={thread}
               commentAmount={thread.comments.length}
+              currentVote={currentVote}
+              voteAmount={voteAmount}
             />
           </li>
         )

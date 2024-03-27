@@ -1,9 +1,13 @@
+'use client'
+
 import { formatTimeToNow } from '@/lib/utils'
 import { Thread, User, Vote } from '@prisma/client'
 import { MessageSquare } from 'lucide-react'
-import Link from 'next/link'
 import { FC, useRef } from 'react'
 import EditorOutput from './EditorOutput'
+import ThreadVoteClient from './thread-vote/ThreadVoteClient'
+
+type PartialVote = Pick<Vote, 'type'>
 
 interface ThreadProps {
   subforumName: string
@@ -12,20 +16,32 @@ interface ThreadProps {
     votes: Vote[]
   }
   commentAmount: number
+  voteAmount: number
+  currentVote?: PartialVote
 }
 
-const Thread: FC<ThreadProps> = ({ subforumName, thread, commentAmount }) => {
+const Thread: FC<ThreadProps> = ({
+  subforumName,
+  thread,
+  commentAmount,
+  voteAmount,
+  currentVote,
+}) => {
   const threadRef = useRef<HTMLDivElement>(null)
 
   return (
     <div
-      className="cursor-pointer rounded-md border bg-card shadow transition-shadow hover:shadow-lg"
-      onClick={() => {
-        window.location.href = `/c/${subforumName}/thread/${thread.id}`
-      }}
+      className="rounded-md border bg-card shadow transition-shadow hover:shadow-lg"
+      // onClick={() => {
+      //   window.location.href = `/c/${subforumName}/thread/${thread.id}`
+      // }}
     >
-      <div className="flex justify-between px-4 py-2">
-        <span>-1</span>
+      <div className="flex justify-between pl-0 px-4 py-2">
+        <ThreadVoteClient
+          threadId={thread.id}
+          initialVote={currentVote?.type}
+          initialVotesAmount={voteAmount}
+        />
 
         <div className="w-0 flex-1">
           <div className="mt-1 max-h-40 text-xs text-muted-foreground">
@@ -56,9 +72,8 @@ const Thread: FC<ThreadProps> = ({ subforumName, thread, commentAmount }) => {
             className="relative max-h-40 w-full overflow-clip text-sm"
             ref={threadRef}
           >
-
             <EditorOutput content={thread.content} />
-            
+
             {threadRef.current?.clientHeight === 160 ? (
               <div className="absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-card to-transparent" />
             ) : null}

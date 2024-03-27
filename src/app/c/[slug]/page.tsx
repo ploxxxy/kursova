@@ -30,6 +30,9 @@ const page: FC<PageProps> = async ({ params }) => {
           subforum: true,
         },
         take: INFINE_SCROLLING_PAGE_SIZE,
+        orderBy: {
+          createdAt: 'desc',
+        },
       },
     },
   })
@@ -41,7 +44,10 @@ const page: FC<PageProps> = async ({ params }) => {
   return (
     <>
       <MiniCreateThread session={session} />
-      <ThreadFeed initialThreads={subforum.threads} subforumName={subforum.name} />
+      <ThreadFeed
+        initialThreads={subforum.threads}
+        subforumName={subforum.name}
+      />
     </>
   )
 }

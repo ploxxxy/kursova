@@ -23,14 +23,18 @@ export default function RootLayout({
   authModal: React.ReactNode
 }>) {
   return (
-    <html lang="uk" className={cn('antialiased', font.className)}>
+    <html
+      suppressHydrationWarning
+      lang="uk"
+      className={cn('antialiased', font.className)}
+    >
       <body className="min-h-screen">
         <Providers>
           <Navbar />
 
           {authModal}
 
-          <div className="container max-w-7xl mx-auto h-full pt-24">
+          <div className="container mx-auto h-full max-w-7xl pt-24">
             {children}
           </div>
 

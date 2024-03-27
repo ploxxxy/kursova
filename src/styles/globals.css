@@ -134,8 +134,8 @@
     --muted: #f7f9fa;
     --muted-foreground: #878a8c;
 
-    --destructive: #ea0027;
-    --destructive-foreground: #ffbcc8;
+    --destructive: #b61515;
+    --destructive-foreground: #ffffff;
 
     --ring: var(--secondary);
   }
@@ -218,8 +218,8 @@
     --muted: #151516;
     --muted-foreground: #5a5c5e;
 
-    --destructive: #8b0017;
-    --destructive-foreground: #c93939;
+    --destructive: #b61515;
+    --destructive-foreground: #ffffff;
 
     --ring: var(--secondary);
   }
