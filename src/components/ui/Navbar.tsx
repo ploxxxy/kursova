@@ -4,6 +4,7 @@ import { buttonVariants } from '@/components/ui/Button'
 import { getSession } from '@/lib/auth'
 import UserAccountNav from '../UserAccountNav'
 import { cn } from '@/lib/utils'
+import Searchbar from '../Searchbar'
 
 const Navbar = async () => {
   const session = await getSession()
@@ -13,13 +14,15 @@ const Navbar = async () => {
       <div className="container mx-auto flex h-full max-w-7xl items-center justify-between gap-2">
         <Link
           href="/"
-          className={cn('gap-2', buttonVariants({ variant: 'subtle' }))}
+          className={buttonVariants({ variant: 'ghost', className: 'gap-2 !px-2' })}
         >
           <Icons.logo className="h-8 w-8 sm:h-6 sm:w-6" />
-          <p className="hidden text-sm font-medium md:block">
+          <p className="hidden text-sm font-medium md:block text-foreground">
             Форум
           </p>
         </Link>
+
+        <Searchbar />
 
         {session?.user ? (
           <UserAccountNav user={session.user} />
