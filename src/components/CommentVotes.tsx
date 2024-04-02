@@ -3,27 +3,25 @@
 import { useCustomToast } from '@/hooks/use-custom-toast'
 import { toast } from '@/hooks/use-toast'
 import { cn } from '@/lib/utils'
-import { ThreadVoteRequest } from '@/lib/validators/vote'
+import { CommentVoteRequest } from '@/lib/validators/vote'
 import { usePrevious } from '@mantine/hooks'
 import { VoteType } from '@prisma/client'
 import { useMutation } from '@tanstack/react-query'
 import axios, { AxiosError } from 'axios'
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react'
-import { FC, useEffect, useState } from 'react'
-import { Button } from '../ui/Button'
+import { FC, useState } from 'react'
+import { Button } from './ui/Button'
 
-interface ThreadVoteClientProps {
-  threadId: string
+interface CommentVotesProps {
+  commentId: string
   initialVotesAmount: number
-  initialVote?: VoteType | null
-  insideThread?: boolean
+  initialVote?: VoteType | undefined
 }
 
-const ThreadVoteClient: FC<ThreadVoteClientProps> = ({
-  threadId,
+const CommentVotes: FC<CommentVotesProps> = ({
+  commentId,
   initialVotesAmount,
   initialVote,
-  insideThread,
 }) => {
   const { loginToast } = useCustomToast()
 
@@ -31,18 +29,14 @@ const ThreadVoteClient: FC<ThreadVoteClientProps> = ({
   const [currentVote, setCurrentVote] = useState(initialVote)
   const previousVote = usePrevious(currentVote)
 
-  useEffect(() => {
-    setCurrentVote(initialVote)
-  }, [initialVote])
-
   const { mutate } = useMutation({
     mutationFn: async (type: VoteType) => {
-      const payload: ThreadVoteRequest = {
-        threadId: threadId,
+      const payload: CommentVoteRequest = {
+        commentId,
         voteType: type,
       }
 
-      await axios.patch('/api/subforum/thread/vote', payload)
+      await axios.patch('/api/subforum/thread/comment/vote', payload)
     },
     onError: (error, voteType) => {
       if (voteType === 'UPVOTE') setVoteAmount((prev) => prev - 1)
@@ -78,12 +72,7 @@ const ThreadVoteClient: FC<ThreadVoteClientProps> = ({
   })
 
   return (
-    <div
-      className={cn(
-        'flex items-center px-3',
-        insideThread ? 'flex-row sm:flex-col mb-3' : 'flex-col',
-      )}
-    >
+    <div className="flex items-center">
       <Button
         onClick={() => mutate('UPVOTE')}
         size="sm"
@@ -124,4 +113,4 @@ const ThreadVoteClient: FC<ThreadVoteClientProps> = ({
   )
 }
 
-export default ThreadVoteClient
+export default CommentVotes

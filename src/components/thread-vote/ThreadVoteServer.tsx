@@ -9,6 +9,7 @@ interface ThreadVoteServerProps {
   initialVotesAmount?: number
   initialVote?: VoteType | null
   getData?: () => Promise<(Thread & { votes: Vote[] }) | null>
+  insideThread?: boolean
 }
 
 const ThreadVoteServer: FC<ThreadVoteServerProps> = async ({
@@ -16,6 +17,7 @@ const ThreadVoteServer: FC<ThreadVoteServerProps> = async ({
   initialVotesAmount,
   initialVote,
   getData,
+  insideThread
 }) => {
   const session = await getSession()
 
@@ -45,6 +47,7 @@ const ThreadVoteServer: FC<ThreadVoteServerProps> = async ({
       initialVotesAmount={voteAmount}
       threadId={threadId}
       initialVote={currentVote}
+      insideThread={insideThread}
     />
   )
 }

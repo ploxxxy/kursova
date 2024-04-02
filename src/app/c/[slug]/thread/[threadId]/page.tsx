@@ -1,3 +1,4 @@
+import CommentSection from '@/components/CommentSection'
 import EditorOutput from '@/components/EditorOutput'
 import ThreadVoteServer from '@/components/thread-vote/ThreadVoteServer'
 import { buttonVariants } from '@/components/ui/Button'
@@ -45,6 +46,7 @@ const page: FC<PageProps> = async ({ params }) => {
       <div className="flex h-full flex-col items-center justify-between sm:flex-row sm:items-start">
         <Suspense fallback={<ThreadVoteSkeleton />}>
           <ThreadVoteServer
+            insideThread
             threadId={thread?.id ?? cachedThread.id}
             getData={async () => {
               return await db.thread.findUnique({
@@ -74,6 +76,12 @@ const page: FC<PageProps> = async ({ params }) => {
           <EditorOutput
             content={thread?.content ?? JSON.parse(cachedThread.content)}
           />
+
+          <Suspense
+            fallback={<Loader2 className="h-5 w-5 animate-spin text-text" />}
+          >
+            <CommentSection threadId={thread?.id ?? cachedThread.id} />
+          </Suspense>
         </div>
       </div>
     </div>
@@ -82,12 +90,12 @@ const page: FC<PageProps> = async ({ params }) => {
 
 const ThreadVoteSkeleton = () => {
   return (
-    <div className="flex w-20 flex-col items-center pr-6">
+    <div className="flex w-20 sm:flex-col items-center mb-3 sm:mb-0 gap-2">
       <div
         className={buttonVariants({
           variant: 'ghost',
           size: 'sm',
-          className: 'hover:bg-unset -mb-2 p-0 hover:text-primary-400',
+          className: 'hover:bg-unset! p-0 hover:text-green-500',
         })}
       >
         <ArrowBigUp className="h-5 w-5" />
@@ -101,7 +109,7 @@ const ThreadVoteSkeleton = () => {
         className={buttonVariants({
           variant: 'ghost',
           size: 'sm',
-          className: 'hover:bg-unset -mb-2 p-0 hover:text-primary-400',
+          className: 'hover:bg-unset! p-0 hover:text-red-500',
         })}
       >
         <ArrowBigDown className="h-5 w-5" />

@@ -197,7 +197,7 @@ const Editor: FC<EditorProps> = ({ subforumId }) => {
             }}
             {...rest}
             placeholder="Заголовок"
-            className="resize-none appearance-none overflow-hidden bg-transparent text-2xl font-bold text-white placeholder:text-muted-foreground focus:outline-none"
+            className="resize-none appearance-none overflow-hidden bg-transparent text-2xl font-bold placeholder:text-muted-foreground focus:outline-none"
           />
 
           <div id="editor" className="min-h-[400px]" />
