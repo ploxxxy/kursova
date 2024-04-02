@@ -14,16 +14,16 @@ export async function POST(req: Request) {
     const body = await req.json()
     const { subforumId, title, content } = ThreadValidator.parse(body)
 
-    const subscription = await db.subscription.findFirst({
-      where: {
-        subforumId,
-        userId: session.user.id,
-      },
-    })
+    // const subscription = await db.subscription.findFirst({
+    //   where: {
+    //     subforumId,
+    //     userId: session.user.id,
+    //   },
+    // })
 
-    if (!subscription) {
-      return new Response('Not subscribed to the subforum', { status: 400 })
-    }
+    // if (!subscription) {
+    //   return new Response('Not subscribed to the subforum', { status: 400 })
+    // }
 
     await db.thread.create({
       data: {
