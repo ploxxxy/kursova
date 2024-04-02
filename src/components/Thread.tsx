@@ -2,10 +2,11 @@
 
 import { formatTimeToNow } from '@/lib/utils'
 import { Thread, User, Vote } from '@prisma/client'
-import { MessageSquare } from 'lucide-react'
+import { MessageSquare, Share } from 'lucide-react'
 import { FC, useRef } from 'react'
 import EditorOutput from './EditorOutput'
 import ThreadVoteClient from './thread-vote/ThreadVoteClient'
+import { Button } from './ui/Button'
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -36,7 +37,7 @@ const Thread: FC<ThreadProps> = ({
       //   window.location.href = `/c/${subforumName}/thread/${thread.id}`
       // }}
     >
-      <div className="flex justify-between pl-0 px-4 py-2">
+      <div className="flex justify-between px-4 py-2 pl-0">
         <ThreadVoteClient
           threadId={thread.id}
           initialVote={currentVote?.type}
@@ -81,17 +82,40 @@ const Thread: FC<ThreadProps> = ({
         </div>
       </div>
 
-      <div className="z-20 bg-background-50 p-4 text-sm sm:px-6">
+      <div className="flex justify-between bg-background-50 p-4 text-sm sm:px-6">
         <a
           className="flex w-fit items-center gap-2 hover:underline"
           href={`/c/${subforumName}/thread/${thread.id}`}
         >
           <MessageSquare className="h-4 w-4" />
-          {commentAmount} коментарів
+          {commentAmount} {formatText(commentAmount)}
         </a>
       </div>
     </div>
   )
+}
+
+const formatText = (commentAmount: number) => {
+  switch (commentAmount) {
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+      return 'коментарів'
+  }
+
+  const lastDigit = commentAmount % 10
+
+  switch (lastDigit) {
+    case 1:
+      return 'коментар'
+    case 2:
+    case 3:
+    case 4:
+      return 'коментарі'
+    default:
+      return 'коментарів'
+  }
 }
 
 export default Thread
