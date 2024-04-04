@@ -82,7 +82,7 @@ const page: FC<PageProps> = async ({ params }) => {
           <Suspense
             fallback={<Loader2 className="h-5 w-5 animate-spin text-text" />}
           >
-            <CommentSection threadId={thread?.id ?? cachedThread.id} />
+            <CommentSection authorId={thread?.authorId ?? cachedThread.authorId} threadId={thread?.id ?? cachedThread.id} />
           </Suspense>
         </div>
       </div>

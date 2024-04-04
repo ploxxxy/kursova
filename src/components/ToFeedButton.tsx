@@ -1,7 +1,6 @@
 'use client'
 
 import { ChevronLeft } from 'lucide-react'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const ToFeedButton = () => {
@@ -9,10 +8,13 @@ const ToFeedButton = () => {
   const subforumPath = getSubforumPath(pathname)
 
   return (
-    <Link href={subforumPath} className="flex items-center text-text hover:underline hover:text-text-800 transition-colors">
+    <a
+      href={subforumPath}
+      className="flex items-center text-text transition-colors hover:text-text-800 hover:underline"
+    >
       <ChevronLeft className="mr-1 h-4 w-4" />
-      {subforumPath === '/' ? 'Back home' : 'Back to community'}
-    </Link>
+      {subforumPath === '/' ? 'До стрічки' : 'До форуму'}
+    </a>
   )
 }
 

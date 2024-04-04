@@ -2,6 +2,7 @@ import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { redis } from '@/lib/redis'
 import { ThreadVoteValidator } from '@/lib/validators/vote'
+import { CachedThread } from '@/types/redis'
 import { z } from 'zod'
 
 const CACHE_AFTER_VOTES = 1 // TODO: change this after testing
@@ -72,25 +73,16 @@ export async function PATCH(req: Request) {
       }, 0)
 
       if (voteAmount >= CACHE_AFTER_VOTES) {
-        // const cachePayload: CachedThread = {
-        //   id: thread.id,
-        //   title: thread.title,
-        //   authorName: thread.author.name ?? '',
-        //   content: JSON.stringify(thread.content),
-        //   currentVote: voteType,
-        //   createdAt: thread.createdAt.toString(),
-        // }
-
-        // TODO: Validate the object
-        await redis.hSet(`thread:${threadId}`, {
+        const cachedPayload: CachedThread = {
           id: thread.id,
           title: thread.title,
-          authorName: thread?.author.username
-            ? '@' + thread.author.username
-            : thread?.author.name ?? '<blank>',
+          authorName: thread.author.name ?? '<blank>',
+          authorId: thread.author.id,
           content: JSON.stringify(thread.content),
-          createdAt: thread.createdAt.toISOString(),
-        })
+          createdAt: thread.createdAt.toString(),
+        }
+
+        await redis.hSet(`thread:${threadId}`, cachedPayload)
         await redis.expire(`thread:${threadId}`, 60 * 60 * 24)
       }
 
@@ -112,16 +104,16 @@ export async function PATCH(req: Request) {
     }, 0)
 
     if (voteAmount >= CACHE_AFTER_VOTES) {
-      // TODO: Validate the object
-      await redis.hSet(`thread:${threadId}`, {
+      const cachedPayload: CachedThread = {
         id: thread.id,
         title: thread.title,
-        authorName: thread?.author.username
-          ? '@' + thread.author.username
-          : thread?.author.name ?? '<blank>',
+        authorName: thread.author.name ?? '<blank>',
+        authorId: thread.author.id,
         content: JSON.stringify(thread.content),
-        createdAt: thread.createdAt.toISOString(),
-      })
+        createdAt: thread.createdAt.toString(),
+      }
+
+      await redis.hSet(`thread:${threadId}`, cachedPayload)
       await redis.expire(`thread:${threadId}`, 60 * 60 * 24)
     }
 

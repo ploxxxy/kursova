@@ -62,7 +62,7 @@ const Layout = async ({
       <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
         <div className="col-span-2 flex flex-col gap-4">{children}</div>
 
-        <div className="order-first h-fit overflow-hidden rounded-lg border shadow md:order-last md:block">
+        <div className="order-first h-fit overflow-hidden rounded-lg border md:order-last md:block">
           <div className="bg-secondary px-6 py-4">
             <p className="font-semibold text-secondary-foreground">
               Про c/{subforum.name}

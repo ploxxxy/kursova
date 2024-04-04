@@ -2,14 +2,16 @@
 
 import { formatTimeToNow } from '@/lib/utils'
 import { Comment, CommentVote, User, VoteType } from '@prisma/client'
+import { MessageSquare, Pencil } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { FC, useRef, useState } from 'react'
+import CommentEditor from './CommentEditor'
 import CommentVotes from './CommentVotes'
 import UserAvatar from './UserAvatar'
 import { Button } from './ui/Button'
-import { MessageSquare } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
-import CommentEditor from './CommentEditor'
+import Username from './Username'
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/Tooltip'
 
 type ExtendedComment = Comment & { votes: CommentVote[]; author: User }
 
@@ -17,12 +19,14 @@ interface ThreadCommentProps {
   comment: ExtendedComment
   votesAmount: number
   currentVote: VoteType | undefined
+  isOP?: boolean
 }
 
 const ThreadComment: FC<ThreadCommentProps> = ({
   comment,
   votesAmount,
   currentVote,
+  isOP,
 }) => {
   const commentRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
@@ -41,11 +45,15 @@ const ThreadComment: FC<ThreadCommentProps> = ({
         />
 
         <div className="ml-2 flex items-baseline gap-x-2">
-          <p className="text-sm font-medium">
-            {comment.author.username
-              ? '@' + comment.author.username
-              : comment.author.name}
-          </p>
+          <Username className="text-sm font-medium" user={comment.author} />
+          {isOP && (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Pencil className="h-4 w-4 self-center text-secondary" />
+              </TooltipTrigger>
+              <TooltipContent className='p-2 bg-card border text-text shadow'>Цей користувач створив поточну тему</TooltipContent>
+            </Tooltip>
+          )}
           <p
             className="max-h-40 truncate text-xs text-text"
             suppressHydrationWarning
