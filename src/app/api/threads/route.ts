@@ -45,7 +45,7 @@ export async function GET(req: Request) {
           name: subforumName,
         },
       }
-    } else if (session) {
+    } else if (session && followedCommunitiesIds.length > 0) {
       whereClause = {
         subforum: {
           id: {

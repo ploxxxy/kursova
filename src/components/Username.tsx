@@ -22,7 +22,7 @@ const Username: FC<UsernameProps> = ({ user, className }) => {
         'Цей користувач був заблокований за порушення правил. Він має можливість тільки переглядати теми'
       break
     case 'USER':
-      userDescription = 'Цей користувач є зареєстрованим користувачем форуму'
+      userDescription = 'Цей акаунт є зареєстрованим користувачем форуму'
       break
     case 'MODERATOR':
       userDescription = 'Цей користувач є модератором одного або більше форумів'

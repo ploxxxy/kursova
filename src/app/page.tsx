@@ -43,26 +43,33 @@ export default async function Home() {
             <div className="mb-2 justify-between py-3 text-sm">
               <p className="mb-4">Твоя персоналізована домашня сторінка 🌞</p>
 
-              {followedCommunities && followedCommunities.length > 0 ? (
+              {session ? (
                 <div className="flex flex-col gap-1">
-                  <p className="text-xs text-text">
-                    Дані підтягуються з таких форумів, як:
-                  </p>
-                  {followedCommunities.map(({ subforum, subforumId }) => (
-                    <Link
-                      className="flex items-center gap-1 hover:underline"
-                      key={subforumId}
-                      href={`/c/${subforum.name}`}
-                    >
-                      <Users className="h-4 w-4" />
-                      {subforum.name}
-                    </Link>
-                  ))}
+                  {followedCommunities ? (
+                    <>
+                      <p className="text-xs text-text">
+                        Дані підтягуються з таких форумів, як:
+                      </p>
+                      {followedCommunities.map(({ subforum, subforumId }) => (
+                        <Link
+                          className="flex items-center gap-1 hover:underline"
+                          key={subforumId}
+                          href={`/c/${subforum.name}`}
+                        >
+                          <Users className="h-4 w-4" />
+                          {subforum.name}
+                        </Link>
+                      ))}
+                    </>
+                  ) : (
+                    <p className="text-xs text-text">
+                      Ти ще не підписався на жоден форум!
+                    </p>
+                  )}
                 </div>
               ) : (
                 <span className="text-red-500">
-                  Увійдіть до свого акаунту, щоб отримати персоналізовану
-                  сторінку
+                  Увійди до свого акаунту, щоб отримати персоналізовану сторінку
                 </span>
               )}
             </div>
