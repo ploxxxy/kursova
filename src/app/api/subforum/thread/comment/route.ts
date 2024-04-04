@@ -5,14 +5,13 @@ import { z } from 'zod'
 
 export async function PATCH(req: Request) {
   try {
-    const body = await req.json()
-
-    const { threadId, text, replyToId } = CommentValidator.parse(body)
     const session = await getSession()
-
     if (!session?.user) {
       return new Response('Unauthorized', { status: 401 })
     }
+
+    const body = await req.json()
+    const { threadId, text, replyToId } = CommentValidator.parse(body)
 
     await db.comment.create({
       data: {
