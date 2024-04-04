@@ -7,8 +7,8 @@ import { Prisma, Subforum } from '@prisma/client'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { Loader2, Users } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import { FC, useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { FC, useEffect, useRef, useState } from 'react'
 import {
   Command,
   CommandEmpty,
@@ -17,6 +17,8 @@ import {
   CommandItem,
   CommandList,
 } from './ui/Command'
+import { useOnClickOutside } from '@/hooks/use-on-click-outside'
+import Link from 'next/link'
 
 interface SearchbarProps {}
 
@@ -37,18 +39,31 @@ const Searchbar: FC<SearchbarProps> = () => {
   })
 
   const router = useRouter()
+  const commandRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
   const request = useDebounceCallback(async () => {
     refetch()
-  }, 750)
+  }, 500)
 
   useEffect(() => {
     setIsLoading(true)
   }, [input])
 
+  useOnClickOutside(commandRef, () => {
+    setInput('')
+  })
+
+  useEffect(() => {
+    setInput('')
+  }, [pathname])
+
   return (
     <ErrorBoundary>
-      <Command className="relative max-w-lg overflow-visible rounded-full border">
+      <Command
+        ref={commandRef}
+        className="relative max-w-lg overflow-visible rounded-full border"
+      >
         <CommandInput
           value={input}
           onValueChange={(v) => {
@@ -84,7 +99,7 @@ const Searchbar: FC<SearchbarProps> = () => {
                   value={subforum.name}
                 >
                   <Users className="mr-2 h-4 w-4" />
-                  <a href={`/c/${subforum.name}`}>c/{subforum.name}</a>
+                  <Link href={`/c/${subforum.name}`}>c/{subforum.name}</Link>
                 </CommandItem>
               ))}
             </CommandGroup>

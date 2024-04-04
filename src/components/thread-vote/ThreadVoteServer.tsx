@@ -1,5 +1,5 @@
+import { getSession } from '@/lib/auth'
 import { Thread, Vote, VoteType } from '@prisma/client'
-import { getSession } from 'next-auth/react'
 import { notFound } from 'next/navigation'
 import { FC } from 'react'
 import ThreadVoteClient from './ThreadVoteClient'
@@ -17,7 +17,7 @@ const ThreadVoteServer: FC<ThreadVoteServerProps> = async ({
   initialVotesAmount,
   initialVote,
   getData,
-  insideThread
+  insideThread,
 }) => {
   const session = await getSession()
 

@@ -1,4 +1,5 @@
 import SubscribeToggle from '@/components/SubscribeToggle'
+import ToFeedButton from '@/components/ToFeedButton'
 import { buttonVariants } from '@/components/ui/Button'
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
@@ -54,7 +55,10 @@ const Layout = async ({
 
   return (
     <div className="mx-auto h-full max-w-7xl sm:container">
-      <h1 className="text-3xl font-bold md:text-4xl">c/{subforum.name}</h1>
+      <div>
+        <ToFeedButton />
+        <h1 className="text-3xl font-bold md:text-4xl">c/{subforum.name}</h1>
+      </div>
       <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
         <div className="col-span-2 flex flex-col gap-4">{children}</div>
 

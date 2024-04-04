@@ -6,6 +6,7 @@ import { MessageSquare } from 'lucide-react'
 import { FC, useRef } from 'react'
 import EditorOutput from './EditorOutput'
 import ThreadVoteClient from './thread-vote/ThreadVoteClient'
+import Link from 'next/link'
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -47,12 +48,12 @@ const Thread: FC<ThreadProps> = ({
           <div className="mt-1 max-h-40 text-xs text-muted-foreground">
             {subforumName ? (
               <>
-                <a
+                <Link
                   className="text-sm text-text-950 underline underline-offset-2 hover:text-primary"
                   href={`/c/${subforumName}`}
                 >
                   c/{subforumName}
-                </a>
+                </Link>
 
                 <span className="px-1">•</span>
               </>
@@ -66,11 +67,11 @@ const Thread: FC<ThreadProps> = ({
             {formatTimeToNow(thread.createdAt)}
           </div>
 
-          <a href={`/c/${subforumName}/thread/${thread.id}`}>
+          <Link href={`/c/${subforumName}/thread/${thread.id}`}>
             <h1 className="py-2 text-lg font-semibold leading-6 text-text-950 hover:text-text-700 hover:underline">
               {thread.title}
             </h1>
-          </a>
+          </Link>
 
           <div
             className="relative max-h-80 w-full overflow-clip text-sm"
@@ -86,13 +87,13 @@ const Thread: FC<ThreadProps> = ({
       </div>
 
       <div className="flex justify-between bg-background-50 p-4 text-sm sm:px-6">
-        <a
+        <Link
           className="flex w-fit items-center gap-2 hover:underline"
           href={`/c/${subforumName}/thread/${thread.id}`}
         >
           <MessageSquare className="h-4 w-4" />
           {commentAmount} {formatText(commentAmount)}
-        </a>
+        </Link>
       </div>
     </div>
   )

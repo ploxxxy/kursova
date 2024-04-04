@@ -81,6 +81,8 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
           )
         })}
       </Suspense>
+
+      {isFetchingNextPage && <SkeletonFeed />}
     </div>
   )
 }

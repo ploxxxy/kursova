@@ -2,11 +2,29 @@ import GeneralFeed from '@/components/feed/GeneralFeed'
 import PersonalFeed from '@/components/feed/PersonalFeed'
 import { buttonVariants } from '@/components/ui/Button'
 import { getSession } from '@/lib/auth'
-import { HomeIcon } from 'lucide-react'
+import { db } from '@/lib/db'
+import { Subforum } from '@prisma/client'
+import { HomeIcon, Users } from 'lucide-react'
 import Link from 'next/link'
 
 export default async function Home() {
   const session = await getSession()
+
+  let followedCommunities:
+    | { subforum: Subforum; userId: string; subforumId: string }[]
+    | null = null
+
+  if (session) {
+    followedCommunities = await db.subscription.findMany({
+      where: {
+        userId: session?.user.id,
+      },
+      include: {
+        subforum: true,
+      },
+      take: 5,
+    })
+  }
 
   return (
     <>
@@ -22,8 +40,31 @@ export default async function Home() {
               <HomeIcon className="mr-2 h-6 w-6" />
               Домашня сторінка
             </p>
-            <div className="gap-x 4 mb-2 flex justify-between py-3 text-sm">
-              <p className="">Твоя персоналізована домашня сторінка 🌞</p>
+            <div className="mb-2 justify-between py-3 text-sm">
+              <p className="mb-4">Твоя персоналізована домашня сторінка 🌞</p>
+
+              {followedCommunities && followedCommunities.length > 0 ? (
+                <div className="flex flex-col gap-1">
+                  <p className="text-xs text-text">
+                    Дані підтягуються з таких форумів, як:
+                  </p>
+                  {followedCommunities.map(({ subforum, subforumId }) => (
+                    <Link
+                      className="flex items-center gap-1 hover:underline"
+                      key={subforumId}
+                      href={`/c/${subforum.name}`}
+                    >
+                      <Users className="h-4 w-4" />
+                      {subforum.name}
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <span className="text-red-500">
+                  Увійдіть до свого акаунту, щоб отримати персоналізовану
+                  сторінку
+                </span>
+              )}
             </div>
 
             <Link
