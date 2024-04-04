@@ -63,7 +63,9 @@ const page: FC<PageProps> = async ({ params }) => {
 
         <div className="w-full flex-1 rounded border bg-card p-4 sm:w-0">
           <p className="mt-1 max-h-40 truncate text-xs text-text">
-            {thread?.author.name ?? cachedThread.authorName}
+            {thread?.author.username
+              ? '@' + thread.author.username
+              : thread?.author.name ?? cachedThread.authorName}
             <span className="px-1">•</span>
             {formatTimeToNow(
               thread?.createdAt ?? new Date(cachedThread.createdAt),
@@ -90,7 +92,7 @@ const page: FC<PageProps> = async ({ params }) => {
 
 const ThreadVoteSkeleton = () => {
   return (
-    <div className="flex w-20 sm:flex-col items-center mb-3 sm:mb-0 gap-2">
+    <div className="mb-3 flex w-20 items-center gap-2 sm:mb-0 sm:flex-col">
       <div
         className={buttonVariants({
           variant: 'ghost',

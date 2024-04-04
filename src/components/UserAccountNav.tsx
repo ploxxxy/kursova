@@ -1,9 +1,10 @@
 'use client'
 
-import { User } from 'next-auth'
+import { Session } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { FC } from 'react'
+import ThemeSwitch from './ThemeSwitch'
 import UserAvatar from './UserAvatar'
 import {
   DropdownMenu,
@@ -12,10 +13,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/DropdownMenu'
-import ThemeSwitch from './ThemeSwitch'
 
 interface UserAccountNavProps {
-  user: Pick<User, 'name' | 'image' | 'email'>
+  user: Session['user']
 }
 
 const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
@@ -31,12 +31,18 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
       <DropdownMenuContent className="bg-card text-foreground" align="end">
         <div className="flex items-center justify-start gap-2 p-2">
           <div className="flex flex-col gap-y-1 leading-none">
-            {user.name && <p className="font-medium">{user.name}</p>}
-            {user.email && (
-              <p className="w-[200px] truncate text-sm text-muted-foreground">
-                {user.email}
-              </p>
-            )}
+            <p className="font-medium">
+              {user.name}
+              {user.username && (
+                <span className="ml-1 text-sm text-text">
+                  (@{user.username})
+                </span>
+              )}
+            </p>
+
+            <p className="max-w-[200px] truncate text-sm text-muted-foreground">
+              {user.email}
+            </p>
           </div>
         </div>
 

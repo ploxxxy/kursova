@@ -85,7 +85,9 @@ export async function PATCH(req: Request) {
         await redis.hSet(`thread:${threadId}`, {
           id: thread.id,
           title: thread.title,
-          authorName: thread.author.name ?? '',
+          authorName: thread?.author.username
+            ? '@' + thread.author.username
+            : thread?.author.name ?? '<blank>',
           content: JSON.stringify(thread.content),
           createdAt: thread.createdAt.toISOString(),
         })
@@ -114,7 +116,9 @@ export async function PATCH(req: Request) {
       await redis.hSet(`thread:${threadId}`, {
         id: thread.id,
         title: thread.title,
-        authorName: thread.author.name ?? '',
+        authorName: thread?.author.username
+          ? '@' + thread.author.username
+          : thread?.author.name ?? '<blank>',
         content: JSON.stringify(thread.content),
         createdAt: thread.createdAt.toISOString(),
       })

@@ -2,11 +2,10 @@
 
 import { formatTimeToNow } from '@/lib/utils'
 import { Thread, User, Vote } from '@prisma/client'
-import { MessageSquare, Share } from 'lucide-react'
+import { MessageSquare } from 'lucide-react'
 import { FC, useRef } from 'react'
 import EditorOutput from './EditorOutput'
 import ThreadVoteClient from './thread-vote/ThreadVoteClient'
-import { Button } from './ui/Button'
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -58,7 +57,11 @@ const Thread: FC<ThreadProps> = ({
                 <span className="px-1">•</span>
               </>
             ) : null}
-            <span>{thread.author.name}</span>
+            <span>
+              {thread.author.username
+                ? '@' + thread.author.username
+                : thread.author.name}
+            </span>
             <span className="px-1">•</span>
             {formatTimeToNow(thread.createdAt)}
           </div>

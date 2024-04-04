@@ -41,7 +41,11 @@ const ThreadComment: FC<ThreadCommentProps> = ({
         />
 
         <div className="ml-2 flex items-baseline gap-x-2">
-          <p className="text-sm font-medium">{comment.author.name}</p>
+          <p className="text-sm font-medium">
+            {comment.author.username
+              ? '@' + comment.author.username
+              : comment.author.name}
+          </p>
           <p
             className="max-h-40 truncate text-xs text-text"
             suppressHydrationWarning
