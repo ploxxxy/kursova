@@ -10,3 +10,9 @@ export const ThreadValidator = z.object({
 })
 
 export type ThreadCreationRequest = z.infer<typeof ThreadValidator>
+
+export const ThreadDeleteValidator = z.object({
+  threadId: z.string(),
+})
+
+export type ThreadDeleteRequest = z.infer<typeof ThreadDeleteValidator>

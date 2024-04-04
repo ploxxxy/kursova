@@ -61,7 +61,9 @@ const Thread: FC<ThreadProps> = ({
             ) : null}
             <Username user={thread.author} />
             <span className="px-1">•</span>
-            {formatTimeToNow(thread.createdAt)}
+            <span suppressHydrationWarning>
+              {formatTimeToNow(thread.createdAt)}
+            </span>
           </div>
 
           <Link href={`/c/${subforumName}/thread/${thread.id}`}>

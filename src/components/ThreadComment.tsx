@@ -12,6 +12,7 @@ import UserAvatar from './UserAvatar'
 import { Button } from './ui/Button'
 import Username from './Username'
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/Tooltip'
+import CustomTooltip from './CustomTooltip'
 
 type ExtendedComment = Comment & { votes: CommentVote[]; author: User }
 
@@ -47,12 +48,9 @@ const ThreadComment: FC<ThreadCommentProps> = ({
         <div className="ml-2 flex items-baseline gap-x-2">
           <Username className="text-sm font-medium" user={comment.author} />
           {isOP && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Pencil className="h-4 w-4 self-center text-secondary" />
-              </TooltipTrigger>
-              <TooltipContent className='p-2 bg-card border text-text shadow'>Цей користувач створив поточну тему</TooltipContent>
-            </Tooltip>
+            <CustomTooltip text="Цей користувач створив поточну тему">
+              <Pencil className="h-4 w-4 self-center text-secondary" />
+            </CustomTooltip>
           )}
           <p
             className="max-h-40 truncate text-xs text-text"

@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid'
 import { NextAuthOptions, getServerSession } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { db } from './db'
+import { Role } from '@prisma/client'
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
@@ -30,6 +31,7 @@ export const authOptions: NextAuthOptions = {
         }
 
         session.user.username = token.username
+        session.user.role = token.role as Role
       }
 
       return session
@@ -58,6 +60,7 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         image: dbUser.image,
         username: dbUser.username,
+        role: dbUser.role
       }
     },
 

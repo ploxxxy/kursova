@@ -1,3 +1,4 @@
+import type { Role } from '@prisma/client'
 import type { User } from 'next-auth'
 
 declare module 'next-auth/jwt' {
@@ -12,6 +13,7 @@ declare module 'next-auth' {
     user: User & {
       id: string
       username?: string | null
+      role: Role
     }
   }
 }

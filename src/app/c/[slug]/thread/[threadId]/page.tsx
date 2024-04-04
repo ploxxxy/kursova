@@ -1,8 +1,10 @@
 import CommentSection from '@/components/CommentSection'
 import EditorOutput from '@/components/EditorOutput'
+import ThreadDeleteButton from '@/components/ThreadDeleteButton'
 import Username from '@/components/Username'
 import ThreadVoteServer from '@/components/thread-vote/ThreadVoteServer'
 import { buttonVariants } from '@/components/ui/Button'
+import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { redis } from '@/lib/redis'
 import { formatTimeToNow } from '@/lib/utils'
@@ -14,6 +16,7 @@ import { FC, Suspense } from 'react'
 
 interface PageProps {
   params: {
+    slug: string
     threadId: string
   }
 }
@@ -22,6 +25,8 @@ export const dynamic = 'force-dynamic'
 export const fetchCache = 'force-no-store'
 
 const page: FC<PageProps> = async ({ params }) => {
+  const session = await getSession()
+
   const cachedThread = (await redis.hGetAll(
     `thread:${params.threadId}`,
   )) as CachedThread
@@ -40,7 +45,12 @@ const page: FC<PageProps> = async ({ params }) => {
     })
   }
 
-  if (!thread && !cachedThread) return notFound()
+  if (!thread && !cachedThread.content) return notFound()
+
+  const accessGranted = thread
+    ? thread.authorId === session?.user.id
+    : cachedThread.authorId === session?.user.id ||
+      session?.user.role === 'ADMIN'
 
   return (
     <div>
@@ -63,21 +73,34 @@ const page: FC<PageProps> = async ({ params }) => {
         </Suspense>
 
         <div className="w-full flex-1 rounded border bg-card p-4 sm:w-0">
-          <div className="mt-1 max-h-40 truncate text-xs text-text">
-            <Username
-              user={{
-                name: cachedThread.authorName,
-                username: cachedThread.authorName,
-                role: cachedThread.authorRole as Role,
-                image: cachedThread.authorImage,
-              }}
-            />
-            <span className="px-1">•</span>
-            <span>
-              {formatTimeToNow(
-                thread?.createdAt ?? new Date(cachedThread.createdAt),
+          <div className="mt-1 flex max-h-40 justify-between text-xs text-text">
+            <div>
+              <Username
+                user={
+                  thread?.author ?? {
+                    name: cachedThread.authorName,
+                    username: cachedThread.authorName,
+                    role: cachedThread.authorRole as Role,
+                    image: cachedThread.authorImage,
+                  }
+                }
+              />
+              <span className="px-1">•</span>
+              <span suppressHydrationWarning>
+                {formatTimeToNow(
+                  thread?.createdAt ?? new Date(cachedThread.createdAt),
+                )}
+              </span>
+            </div>
+
+            <div className="relative">
+              {accessGranted && (
+                <ThreadDeleteButton
+                  subforumName={params.slug}
+                  threadId={thread?.id ?? cachedThread.id}
+                />
               )}
-            </span>
+            </div>
           </div>
           <h1 className="py-2 text-xl font-semibold leading-6 text-text-950">
             {thread?.title ?? cachedThread.title}

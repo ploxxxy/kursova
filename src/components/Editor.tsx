@@ -158,7 +158,6 @@ const Editor: FC<EditorProps> = ({ subforumId }) => {
     onSuccess: () => {
       const path = pathName.split('/').slice(0, -1).join('/')
       router.push(path)
-
       router.refresh()
 
       return toast({
