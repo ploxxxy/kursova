@@ -8,11 +8,10 @@ import { useRouter } from 'next/navigation'
 import { FC, useRef, useState } from 'react'
 import CommentEditor from './CommentEditor'
 import CommentVotes from './CommentVotes'
-import UserAvatar from './UserAvatar'
-import { Button } from './ui/Button'
-import Username from './Username'
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/Tooltip'
 import CustomTooltip from './CustomTooltip'
+import UserAvatar from './UserAvatar'
+import Username from './Username'
+import { Button } from './ui/Button'
 
 type ExtendedComment = Comment & { votes: CommentVote[]; author: User }
 
