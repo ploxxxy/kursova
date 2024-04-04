@@ -7,6 +7,7 @@ import { FC, useRef } from 'react'
 import EditorOutput from './EditorOutput'
 import ThreadVoteClient from './thread-vote/ThreadVoteClient'
 import Link from 'next/link'
+import Username from './Username'
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -45,7 +46,7 @@ const Thread: FC<ThreadProps> = ({
         />
 
         <div className="w-0 flex-1">
-          <div className="mt-1 max-h-40 text-xs text-muted-foreground">
+          <div className="mt-1 max-h-40 text-xs text-text">
             {subforumName ? (
               <>
                 <Link
@@ -58,11 +59,7 @@ const Thread: FC<ThreadProps> = ({
                 <span className="px-1">•</span>
               </>
             ) : null}
-            <span>
-              {thread.author.username
-                ? '@' + thread.author.username
-                : thread.author.name}
-            </span>
+            <Username user={thread.author} />
             <span className="px-1">•</span>
             {formatTimeToNow(thread.createdAt)}
           </div>

@@ -3,6 +3,8 @@ export type CachedThread = {
   title: string
   authorName: string
   authorId: string
+  authorImage: string
+  authorRole: string
   content: string
   createdAt: string
 }

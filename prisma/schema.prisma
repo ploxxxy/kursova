@@ -36,6 +36,13 @@ model Session {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum Role {
+  BANNED
+  USER
+  MODERATOR
+  ADMIN
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -43,6 +50,8 @@ model User {
   emailVerified DateTime?
   username      String?   @unique
   image         String?
+  role        Role          @default(USER)
+
 
   accounts    Account[]
   sessions    Session[]
@@ -51,8 +60,10 @@ model User {
   CommentVote CommentVote[]
   Vote        Vote[]
 
-  createdSubforums Subforum[]      @relation("CreatedBy")
-  Subscription    Subscription[]
+  createdSubforums Subforum[]     @relation("CreatedBy")
+  Subscription     Subscription[]
+
+  moderatedSubforums Subforum[]
 }
 
 model Subforum {
@@ -63,8 +74,12 @@ model Subforum {
 
   threads Thread[]
 
-  creatorId   String?
-  creator     User?           @relation("CreatedBy", fields: [creatorId], references: [id])
+  creatorId String?
+  creator   User?   @relation("CreatedBy", fields: [creatorId], references: [id])
+
+  moderatorIds String[]
+  moderators   User[]
+
   subscribers Subscription[]
 
   @@index([name])

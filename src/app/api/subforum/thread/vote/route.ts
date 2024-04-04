@@ -5,7 +5,9 @@ import { ThreadVoteValidator } from '@/lib/validators/vote'
 import { CachedThread } from '@/types/redis'
 import { z } from 'zod'
 
-const CACHE_AFTER_VOTES = 1 // TODO: change this after testing
+const CACHE_AFTER_VOTES = 0
+
+// TODO: make redis cache universal + change author object
 
 export async function PATCH(req: Request) {
   try {
@@ -76,8 +78,10 @@ export async function PATCH(req: Request) {
         const cachedPayload: CachedThread = {
           id: thread.id,
           title: thread.title,
-          authorName: thread.author.name ?? '<blank>',
+          authorName: thread.author.name ?? thread.author.name ?? '<blank>',
           authorId: thread.author.id,
+          authorImage: thread.author.image ?? '',
+          authorRole: thread.author.role,
           content: JSON.stringify(thread.content),
           createdAt: thread.createdAt.toString(),
         }
@@ -107,8 +111,10 @@ export async function PATCH(req: Request) {
       const cachedPayload: CachedThread = {
         id: thread.id,
         title: thread.title,
-        authorName: thread.author.name ?? '<blank>',
+        authorName: thread.author.username ?? thread.author.name ?? '<blank>',
         authorId: thread.author.id,
+        authorImage: thread.author.image ?? '',
+        authorRole: thread.author.role,
         content: JSON.stringify(thread.content),
         createdAt: thread.createdAt.toString(),
       }

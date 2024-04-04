@@ -1,12 +1,13 @@
 import CommentSection from '@/components/CommentSection'
 import EditorOutput from '@/components/EditorOutput'
+import Username from '@/components/Username'
 import ThreadVoteServer from '@/components/thread-vote/ThreadVoteServer'
 import { buttonVariants } from '@/components/ui/Button'
 import { db } from '@/lib/db'
 import { redis } from '@/lib/redis'
 import { formatTimeToNow } from '@/lib/utils'
 import { CachedThread } from '@/types/redis'
-import { Thread, User, Vote } from '@prisma/client'
+import { Role, Thread, User, Vote } from '@prisma/client'
 import { ArrowBigDown, ArrowBigUp, Loader2 } from 'lucide-react'
 import { notFound } from 'next/navigation'
 import { FC, Suspense } from 'react'
@@ -62,15 +63,22 @@ const page: FC<PageProps> = async ({ params }) => {
         </Suspense>
 
         <div className="w-full flex-1 rounded border bg-card p-4 sm:w-0">
-          <p className="mt-1 max-h-40 truncate text-xs text-text">
-            {thread?.author.username
-              ? '@' + thread.author.username
-              : thread?.author.name ?? cachedThread.authorName}
+          <div className="mt-1 max-h-40 truncate text-xs text-text">
+            <Username
+              user={{
+                name: cachedThread.authorName,
+                username: cachedThread.authorName,
+                role: cachedThread.authorRole as Role,
+                image: cachedThread.authorImage,
+              }}
+            />
             <span className="px-1">•</span>
-            {formatTimeToNow(
-              thread?.createdAt ?? new Date(cachedThread.createdAt),
-            )}
-          </p>
+            <span>
+              {formatTimeToNow(
+                thread?.createdAt ?? new Date(cachedThread.createdAt),
+              )}
+            </span>
+          </div>
           <h1 className="py-2 text-xl font-semibold leading-6 text-text-950">
             {thread?.title ?? cachedThread.title}
           </h1>
@@ -82,7 +90,10 @@ const page: FC<PageProps> = async ({ params }) => {
           <Suspense
             fallback={<Loader2 className="h-5 w-5 animate-spin text-text" />}
           >
-            <CommentSection authorId={thread?.authorId ?? cachedThread.authorId} threadId={thread?.id ?? cachedThread.id} />
+            <CommentSection
+              authorId={thread?.authorId ?? cachedThread.authorId}
+              threadId={thread?.id ?? cachedThread.id}
+            />
           </Suspense>
         </div>
       </div>
