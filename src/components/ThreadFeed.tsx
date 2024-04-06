@@ -70,6 +70,7 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
         return (
           <div key={thread.id} ref={index === threads.length - 1 ? ref : null}>
             <Thread
+              subforumTitle={thread.subforum.title}
               subforumName={thread.subforum.name}
               thread={thread}
               commentAmount={thread.comments.length}

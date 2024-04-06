@@ -2,7 +2,7 @@ export const metadata = {
   title: 'Налаштування',
 }
 
-import UsernameForm from '@/components/UserSettingsForm'
+import UsernameForm from '@/components/forms/UserSettingsForm'
 import { authOptions, getSession } from '@/lib/auth'
 import { redirect } from 'next/navigation'
 import { FC } from 'react'

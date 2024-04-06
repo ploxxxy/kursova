@@ -2,7 +2,7 @@
 
 import { formatTimeToNow } from '@/lib/utils'
 import type { Thread, User, Vote } from '@prisma/client'
-import { MessageSquare } from 'lucide-react'
+import { Globe, MessageSquare, Users } from 'lucide-react'
 import { FC, useEffect, useRef } from 'react'
 import EditorOutput from './EditorOutput'
 import ThreadVoteClient from './thread-vote/ThreadVoteClient'
@@ -12,6 +12,7 @@ import Username from './Username'
 type PartialVote = Pick<Vote, 'type'>
 
 interface ThreadProps {
+  subforumTitle?: string | null
   subforumName: string
   thread: Thread & {
     author: User
@@ -23,6 +24,7 @@ interface ThreadProps {
 }
 
 const Thread: FC<ThreadProps> = ({
+  subforumTitle,
   subforumName,
   thread,
   commentAmount,
@@ -46,19 +48,15 @@ const Thread: FC<ThreadProps> = ({
         />
 
         <div className="w-0 flex-1">
-          <div className="mt-1 max-h-40 text-xs text-text">
-            {subforumName ? (
-              <>
-                <Link
-                  className="text-sm text-text-950 underline underline-offset-2 hover:text-primary"
-                  href={`/c/${subforumName}`}
-                >
-                  c/{subforumName}
-                </Link>
-
-                <span className="px-1">•</span>
-              </>
-            ) : null}
+          <div className="mt-1 flex max-h-40 items-center text-xs text-text">
+            <Link
+              className="flex items-center gap-1 text-sm text-text-800 hover:text-text-950 hover:underline"
+              href={`/c/${subforumName}`}
+            >
+              <Globe className="h-4 w-4" />
+              {subforumTitle ?? `c/${subforumName}`}
+            </Link>
+            <span className="px-1">•</span>
             <Username user={thread.author} />
             <span className="px-1">•</span>
             <span suppressHydrationWarning>

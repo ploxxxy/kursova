@@ -20,14 +20,10 @@ const page: FC<PageProps> = async ({ params }) => {
   if (!subforum) return notFound()
 
   return (
-    <div className="flex flex-col items-start gap-6">
-      <div className="border-b border-text pb-5">
-        <div className="flex flex-wrap items-baseline">
-          <h3 className="ml-2 text-xl font-semibold leading-6">
-            Створити тему
-          </h3>
-          <p className="ml-2 truncate text-lg text-text">у c/{params.slug}</p>
-        </div>
+    <div className="flex flex-col items-start gap-2">
+      <div className="flex flex-wrap items-baseline">
+        <h3 className="text-xl font-semibold leading-6">Створити тему</h3>
+        <p className="ml-2 truncate text-lg text-text">у c/{params.slug}</p>
       </div>
 
       <Editor subforumId={subforum.id} />

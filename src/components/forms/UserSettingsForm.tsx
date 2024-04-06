@@ -13,7 +13,7 @@ import { Session } from 'next-auth'
 import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button } from './ui/Button'
+import { Button } from '../ui/Button'
 import {
   Card,
   CardContent,
@@ -21,9 +21,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from './ui/Card'
-import { Input } from './ui/Input'
-import { Label } from './ui/Label'
+} from '../ui/Card'
+import { Input } from '../ui/Input'
+import { Label } from '../ui/Label'
 
 interface UserSettingsFormProps {
   user: Session['user']
