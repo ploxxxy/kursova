@@ -5,13 +5,13 @@ import { FC } from 'react'
 import ThreadFeed from '../ThreadFeed'
 
 interface PersonalFeedProps {
-  session: Session | null
+  session: Session
 }
 
 const PersonalFeed: FC<PersonalFeedProps> = async ({ session }) => {
   const followedCommunities = await db.subscription.findMany({
     where: {
-      userId: session?.user.id,
+      userId: session.user.id,
     },
     include: {
       subforum: true,

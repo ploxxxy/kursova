@@ -99,7 +99,7 @@ const Searchbar: FC<SearchbarProps> = () => {
                   value={subforum.name}
                 >
                   <Users className="mr-2 h-4 w-4" />
-                  <Link href={`/c/${subforum.name}`}>c/{subforum.name}</Link>
+                  <a href={`/c/${subforum.name}`}>c/{subforum.name}</a>
                 </CommandItem>
               ))}
             </CommandGroup>

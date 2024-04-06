@@ -37,6 +37,11 @@ export async function GET(req: Request) {
         subforumName: url.searchParams.get('subforumName'),
       })
 
+    let limitNum = parseInt(limit)
+    if (limitNum > 10) {
+      limitNum = 10
+    }
+
     let whereClause = {}
 
     if (subforumName) {
@@ -56,8 +61,8 @@ export async function GET(req: Request) {
     }
 
     const threads = await db.thread.findMany({
-      take: parseInt(limit),
-      skip: (parseInt(page) - 1) * parseInt(limit),
+      take: limitNum,
+      skip: (parseInt(page) - 1) * limitNum,
       where: whereClause,
       orderBy: {
         createdAt: 'desc',

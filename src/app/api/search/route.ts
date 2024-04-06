@@ -12,6 +12,7 @@ export async function GET(req: Request) {
     where: {
       name: {
         startsWith: q,
+        mode: 'insensitive',
       },
     },
     include: {

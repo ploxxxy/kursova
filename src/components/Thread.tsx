@@ -3,7 +3,7 @@
 import { formatTimeToNow } from '@/lib/utils'
 import type { Thread, User, Vote } from '@prisma/client'
 import { MessageSquare } from 'lucide-react'
-import { FC, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import EditorOutput from './EditorOutput'
 import ThreadVoteClient from './thread-vote/ThreadVoteClient'
 import Link from 'next/link'
@@ -78,8 +78,8 @@ const Thread: FC<ThreadProps> = ({
           >
             <EditorOutput content={thread.content} />
 
-            {threadRef.current?.clientHeight === 320 ? (
-              <div className="absolute bottom-0 left-0 h-48 w-full bg-gradient-to-t from-card to-transparent" />
+            {threadRef.current?.clientHeight == 320 ? (
+              <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-full bg-gradient-to-t from-card to-transparent" />
             ) : null}
           </div>
         </div>

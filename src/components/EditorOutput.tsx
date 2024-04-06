@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 
 const Output = dynamic(
   async () => (await import('editorjs-react-renderer')).default,
@@ -29,7 +29,7 @@ const renderers = {
 
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
   return (
-    <div className="prose prose-sm prose-stone dark:prose-invert">
+    <div className="prose prose-sm prose-stone max-w-none dark:prose-invert">
       <Output style={style} renderers={renderers} data={content} />
     </div>
   )
@@ -49,14 +49,14 @@ function CustomImageRenderer({ data }: { data: ImageProps }) {
   const src = data.file.url
 
   return (
-    <a className="relative min-h-[15rem]" href={src} target="_blank">
+    <a className="relative block w-full md:w-3/4" href={src} target="_blank">
       <Image
         src={src}
         alt={data.caption}
         width={0}
         height={0}
         className="h-full w-full rounded-xl"
-        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+        sizes="(max-width: 1024px) 100vw, 33vw"
       />
     </a>
   )
