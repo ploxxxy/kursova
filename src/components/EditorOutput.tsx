@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 
 const Output = dynamic(
   async () => (await import('editorjs-react-renderer')).default,
@@ -25,6 +25,7 @@ const style = {
 const renderers = {
   image: CustomImageRenderer,
   code: CustomCodeRenderer,
+  linktool: CustomLinkRenderer,
 }
 
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
@@ -65,11 +66,55 @@ function CustomImageRenderer({ data }: { data: ImageProps }) {
 interface CodeProps {
   code: string
 }
+
 function CustomCodeRenderer({ data }: { data: CodeProps }) {
   return (
     <pre className="my-4 rounded-md bg-background-50 p-4">
       <code className="text-sm text-foreground">{data.code}</code>
     </pre>
+  )
+}
+
+interface LinkProps {
+  link: string
+  meta: {
+    url: string
+    title: string | null
+    description: string | null
+    color: string | null
+    image: {
+      url: string
+    }
+  }
+}
+
+function CustomLinkRenderer({ data }: { data: LinkProps }) {
+  return (
+    <div className="relative flex flex-col rounded border bg-background-50 p-4 pt-1">
+      {data.meta.color && (
+        <div
+          className="absolute inset-0 h-full w-1"
+          style={{ background: data.meta.color }}
+        />
+      )}
+      <a className="w-3/5" href={data.meta.url}>
+        {data.meta.title}
+      </a>
+      {data.meta.description && (
+        <p className="m-0 w-3/5 no-underline">{data.meta.description}</p>
+      )}
+      {data.meta.image.url && (
+        <div>
+          <div className="absolute right-0 top-0 z-10 h-full w-2/5 bg-gradient-to-r from-background-50 to-transparent" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="absolute right-0 top-0 m-0 h-full w-2/5 object-cover"
+            src={data.meta.image.url}
+            alt={data.link}
+          />
+        </div>
+      )}
+    </div>
   )
 }
 
