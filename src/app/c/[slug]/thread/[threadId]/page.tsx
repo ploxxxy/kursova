@@ -47,10 +47,23 @@ const page: FC<PageProps> = async ({ params }) => {
 
   if (!thread && !cachedThread.content) return notFound()
 
-  const accessGranted = thread
-    ? thread.authorId === session?.user.id
-    : cachedThread.authorId === session?.user.id ||
-      session?.user.role === 'ADMIN'
+  const isModeratorAtSubforum =
+    session &&
+    (await db.subforum.findFirst({
+      where: {
+        name: params.slug,
+        moderatorIds: {
+          hasSome: [session.user.id],
+        },
+      },
+    }))
+
+  const accessGranted =
+    (thread
+      ? thread.authorId === session?.user.id
+      : cachedThread.authorId === session?.user.id) ||
+    session?.user.role === 'ADMIN' ||
+    isModeratorAtSubforum
 
   return (
     <div>
@@ -114,6 +127,7 @@ const page: FC<PageProps> = async ({ params }) => {
             fallback={<Loader2 className="h-5 w-5 animate-spin text-text" />}
           >
             <CommentSection
+              accessGranted={!!accessGranted}
               authorId={thread?.authorId ?? cachedThread.authorId}
               threadId={thread?.id ?? cachedThread.id}
             />

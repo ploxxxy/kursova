@@ -1,5 +1,6 @@
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
+import { CommentDeleteValidator } from '@/lib/validators/comment'
 import { ThreadDeleteValidator } from '@/lib/validators/thread'
 import { z } from 'zod'
 
@@ -12,34 +13,34 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json()
-    const { threadId } = ThreadDeleteValidator.parse(body)
+    const { commentId } = CommentDeleteValidator.parse(body)
 
-    const thread = await db.thread.findFirst({
+    const comment = await db.comment.findFirst({
       where: {
-        id: threadId,
+        id: commentId,
       },
     })
 
-    if (!thread) {
-      return new Response('Thread not found', { status: 404 })
+    if (!comment) {
+      return new Response('Comment not found', { status: 404 })
     }
 
-    const deleteThread = async () => {
-      return await db.thread.delete({
+    const deleteComment = async () => {
+      return await db.comment.delete({
         where: {
-          id: threadId,
+          id: commentId,
         },
       })
     }
 
-    if (thread.authorId === session.user.id) {
-      deleteThread()
+    if (comment.authorId === session.user.id) {
+      deleteComment()
 
       return new Response(null, { status: 200 })
     }
 
     if (session.user.role === 'ADMIN') {
-      deleteThread()
+      deleteComment()
 
       return new Response(null, { status: 200 })
     }
@@ -47,12 +48,16 @@ export async function POST(req: Request) {
     if (session.user.role === 'MODERATOR') {
       const subforum = await db.subforum.findFirst({
         where: {
-          id: thread.subforumId,
+          threads: {
+            some: {
+              id: comment.threadId,
+            },
+          },
         },
       })
 
       if (subforum?.moderatorIds.includes(session.user.id)) {
-        deleteThread()
+        deleteComment()
 
         return new Response(null, { status: 200 })
       }

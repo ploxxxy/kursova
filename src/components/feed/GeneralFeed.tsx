@@ -16,7 +16,7 @@ const GeneralFeed = async () => {
     take: INFINE_SCROLLING_PAGE_SIZE,
   })
 
-  return <ThreadFeed initialThreads={threads} />
+  return <ThreadFeed initialThreads={threads} global />
 }
 
 export default GeneralFeed

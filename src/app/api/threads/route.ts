@@ -25,16 +25,18 @@ export async function GET(req: Request) {
   }
 
   try {
-    const { limit, page, subforumName } = z
+    const { limit, page, subforumName, all } = z
       .object({
         limit: z.string(),
         page: z.string(),
         subforumName: z.string().nullish().optional(),
+        all: z.string().nullish().optional(),
       })
       .parse({
         limit: url.searchParams.get('limit'),
         page: url.searchParams.get('page'),
         subforumName: url.searchParams.get('subforumName'),
+        all: url.searchParams.get('all'),
       })
 
     let limitNum = parseInt(limit)
@@ -44,7 +46,9 @@ export async function GET(req: Request) {
 
     let whereClause = {}
 
-    if (subforumName) {
+    if (all) {
+      whereClause = {}
+    } else if (subforumName) {
       whereClause = {
         subforum: {
           name: subforumName,

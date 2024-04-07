@@ -26,6 +26,9 @@ export default async function Home() {
     })
   }
 
+  const accessGranted =
+    session?.user.role === 'ADMIN' || session?.user.role === 'MODERATOR'
+
   return (
     <>
       <h1 className="text-3xl font-bold md:text-4xl">Твоя стрічка</h1>
@@ -74,14 +77,16 @@ export default async function Home() {
               )}
             </div>
 
-            <Link
-              href="/c/create"
-              className={buttonVariants({
-                className: 'w-full',
-              })}
-            >
-              Створити форум
-            </Link>
+            {accessGranted && (
+              <Link
+                href="/c/create"
+                className={buttonVariants({
+                  className: 'w-full',
+                })}
+              >
+                Створити форум
+              </Link>
+            )}
           </div>
         </div>
       </div>

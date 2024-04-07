@@ -12,6 +12,7 @@ import CustomTooltip from './CustomTooltip'
 import UserAvatar from './UserAvatar'
 import Username from './Username'
 import { Button } from './ui/Button'
+import CommentDeleteButton from './CommentDeleteButton'
 
 type ExtendedComment = Comment & { votes: CommentVote[]; author: User }
 
@@ -20,6 +21,7 @@ interface ThreadCommentProps {
   votesAmount: number
   currentVote: VoteType | undefined
   isOP?: boolean
+  accessGranted: boolean
 }
 
 const ThreadComment: FC<ThreadCommentProps> = ({
@@ -27,6 +29,7 @@ const ThreadComment: FC<ThreadCommentProps> = ({
   votesAmount,
   currentVote,
   isOP,
+  accessGranted,
 }) => {
   const commentRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
@@ -34,7 +37,7 @@ const ThreadComment: FC<ThreadCommentProps> = ({
   const [isReplying, setIsReplying] = useState(false)
 
   return (
-    <div ref={commentRef} className="flex flex-col">
+    <div ref={commentRef} className="relative flex flex-col">
       <div className="flex items-center">
         <UserAvatar
           user={{
@@ -59,6 +62,8 @@ const ThreadComment: FC<ThreadCommentProps> = ({
           </p>
         </div>
       </div>
+
+      {accessGranted && <CommentDeleteButton commentId={comment.id} />}
 
       <p className="mt-2 text-sm">{comment.text}</p>
 

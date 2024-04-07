@@ -25,11 +25,6 @@ export async function GET(req: Request) {
   const imageUrl = $('meta[property="og:image"]').attr('content')
   const color = $('meta[name="theme-color"]').attr('content')
 
-  console.log({
-    success: 1,
-    meta: { title, description, image: { url: imageUrl }, color },
-  })
-
   return new Response(
     JSON.stringify({
       success: 1,

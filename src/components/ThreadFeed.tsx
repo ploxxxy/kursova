@@ -13,9 +13,14 @@ import SkeletonFeed from './feed/SkeletonFeed'
 interface ThreadFeedProps {
   initialThreads: ExtendedThread[]
   subforumName?: string
+  global?: boolean
 }
 
-const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
+const ThreadFeed: FC<ThreadFeedProps> = ({
+  initialThreads,
+  subforumName,
+  global = false,
+}) => {
   const lastThreadRef = useRef<HTMLElement>(null)
 
   const { ref, entry } = useIntersection({
@@ -31,7 +36,8 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
       queryFn: async ({ pageParam = 1 }) => {
         const query =
           `/api/threads?limit=${INFINE_SCROLLING_PAGE_SIZE}&page=${pageParam}` +
-          (subforumName ? `&subforumName=${subforumName}` : '')
+          (subforumName ? `&subforumName=${subforumName}` : '') +
+          (global ? '&all=true' : '')
 
         const { data } = await axios.get(query)
 
@@ -83,11 +89,25 @@ const ThreadFeed: FC<ThreadFeedProps> = ({ initialThreads, subforumName }) => {
 
       {(isFetching || isFetchingNextPage) && <SkeletonFeed />}
 
-      {!isFetching && !isFetchingNextPage && (
+      {!isFetching && !isFetchingNextPage && global ? (
         <div>
           <hr className="border-t border-border" />
           <p className="mt-2 text-center text-sm text-text">
             Усі теми закінчилися! Ти можеш змінити це, створивши нову тему :)
+          </p>
+        </div>
+      ) : (
+        <div>
+          <hr className="border-t border-border" />
+          <p className="mt-2 text-center text-sm text-text">
+            Усі теми закінчилися! Ти можеш переглянути{' '}
+            <a
+              className="text-text-800 hover:text-text-950 hover:underline"
+              href="/c/all"
+            >
+              c/all
+            </a>{' '}
+            з усіма темами або створити нову тему :)
           </p>
         </div>
       )}

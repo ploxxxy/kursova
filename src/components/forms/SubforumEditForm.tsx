@@ -40,22 +40,11 @@ const SubforumEditForm: FC<UserSettingsFormProps> = ({ subforumName }) => {
         description,
         title,
       }
-
-      console.log(payload)
-
       const { data } = await axios.patch('/api/subforum', payload)
       return data
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
-        if (error.response?.status === 409) {
-          return toast({
-            title: 'Цей псевдоним вже зайнятий',
-            description: 'Будь ласка, виберіть інший, унікальний псевдоним.',
-            variant: 'destructive',
-          })
-        }
-
         if (error.response?.status === 400) {
           return toast({
             title: 'Неправильні дані',

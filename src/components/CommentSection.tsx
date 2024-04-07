@@ -7,11 +7,13 @@ import CommentEditor from './CommentEditor'
 interface CommentSectionProps {
   threadId: string
   authorId: string
+  accessGranted: boolean
 }
 
 const CommentSection: FC<CommentSectionProps> = async ({
   threadId,
   authorId,
+  accessGranted,
 }) => {
   const session = await getSession()
   const comments = await db.comment.findMany({
@@ -58,6 +60,7 @@ const CommentSection: FC<CommentSectionProps> = async ({
             return (
               <div key={topLevelComment.id} className="flex flex-col">
                 <ThreadComment
+                  accessGranted={accessGranted}
                   isOP={topLevelComment.authorId === authorId}
                   comment={topLevelComment}
                   currentVote={topLevelCommentVote?.type}
@@ -85,6 +88,7 @@ const CommentSection: FC<CommentSectionProps> = async ({
 
                       return (
                         <ThreadComment
+                          accessGranted={accessGranted}
                           isOP={reply.authorId === authorId}
                           key={reply.id}
                           comment={reply}

@@ -61,14 +61,12 @@ model User {
 
   createdSubforums Subforum[]     @relation("CreatedBy")
   Subscription     Subscription[]
-
-  moderatedSubforums Subforum[]
 }
 
 model Subforum {
-  id        String   @id @default(cuid())
-  name      String   @unique
-  title     String?
+  id          String  @id @default(cuid())
+  name        String  @unique
+  title       String?
   description String?
 
   createdAt DateTime @default(now())
@@ -80,7 +78,6 @@ model Subforum {
   creator   User?   @relation("CreatedBy", fields: [creatorId], references: [id])
 
   moderatorIds String[]
-  moderators   User[]
 
   subscribers Subscription[]
 
@@ -126,7 +123,7 @@ model Comment {
   threadId String
 
   replyToId String?
-  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: Cascade, onUpdate: NoAction)
   replies   Comment[] @relation("ReplyTo")
 
   votes     CommentVote[]
