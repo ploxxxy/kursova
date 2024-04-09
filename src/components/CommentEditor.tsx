@@ -48,6 +48,13 @@ const CommentEditor: FC<CommentEditorProps> = ({
         if (error.response?.status === 401) {
           return loginToast()
         }
+
+        if (error.response?.status === 403) {
+          return toast({
+            title: 'Ви не можете коментувати цей пост',
+            variant: 'destructive',
+          })
+        }
       }
 
       return toast({

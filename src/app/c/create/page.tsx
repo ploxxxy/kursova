@@ -42,6 +42,13 @@ const Page = () => {
           })
         }
 
+        if (error.response?.status === 403) {
+          return toast({
+            title: 'Ви не можете створювати форуми',
+            variant: 'destructive',
+          })
+        }
+
         if (error.response?.status === 401) {
           return loginToast()
         }
@@ -63,8 +70,6 @@ const Page = () => {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Створити форум</h1>
         </div>
-
-        <hr className="h-px bg-zinc-500" />
 
         <div>
           <p className="-mb-1 text-lg font-medium">Назва</p>

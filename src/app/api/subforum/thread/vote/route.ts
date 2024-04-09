@@ -5,7 +5,7 @@ import { ThreadVoteValidator } from '@/lib/validators/vote'
 import { CachedThread } from '@/types/redis'
 import { z } from 'zod'
 
-const CACHE_AFTER_VOTES = 0
+const CACHE_AFTER_VOTES = 10
 
 // TODO: make redis cache universal + change author object
 
@@ -21,6 +21,10 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 })
     }
 
+    if (session.user.role === 'BANNED') {
+      return new Response('User is banned', { status: 403 })
+    }
+    
     const existingVote = await db.vote.findFirst({
       where: {
         userId: session.user.id,

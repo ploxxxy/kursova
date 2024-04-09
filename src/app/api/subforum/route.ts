@@ -11,6 +11,10 @@ export async function POST(req: Request) {
       return new Response('Unauthorized', { status: 401 })
     }
 
+    if (session.user.role === 'BANNED') {
+      return new Response('User is banned', { status: 403 })
+    }
+    
     const body = await req.json()
     const { name, title, description } = SubforumValidator.parse(body)
 

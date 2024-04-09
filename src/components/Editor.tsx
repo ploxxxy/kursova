@@ -8,7 +8,7 @@ import '@/styles/editor.css'
 import type EditorJS from '@editorjs/editorjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { usePathname, useRouter } from 'next/navigation'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -148,7 +148,16 @@ const Editor: FC<EditorProps> = ({ subforumId }) => {
       const { data } = await axios.post('/api/subforum/thread/create', payload)
       return data
     },
-    onError: () => {
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error.response?.status === 403) {
+          return toast({
+            title: 'Ви не можете створювати теми',
+            variant: 'destructive',
+          })
+        }
+      }
+
       return toast({
         title: 'Щось пішло не так...',
         description: 'Не вдалося створити тему. Спробуйте ще раз пізніше.',

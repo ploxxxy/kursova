@@ -1,7 +1,5 @@
 import GeneralFeed from '@/components/feed/GeneralFeed'
-import { buttonVariants } from '@/components/ui/Button'
 import { Globe } from 'lucide-react'
-import Link from 'next/link'
 
 export default async function Home() {
   return (
@@ -18,18 +16,9 @@ export default async function Home() {
               <Globe className="mr-2 h-6 w-6" />
               Глобальна стрічка
             </p>
-            <div className="mb-2 justify-between py-3 text-sm">
+            <div className="mb-2 justify-between text-sm">
               <p className="mb-4">Тут можна переглянути всі теми форуму 🌚</p>
             </div>
-
-            <Link
-              href="/c/create"
-              className={buttonVariants({
-                className: 'w-full',
-              })}
-            >
-              Створити форум
-            </Link>
           </div>
         </div>
       </div>

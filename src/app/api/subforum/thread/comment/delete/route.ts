@@ -1,7 +1,6 @@
 import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { CommentDeleteValidator } from '@/lib/validators/comment'
-import { ThreadDeleteValidator } from '@/lib/validators/thread'
 import { z } from 'zod'
 
 export async function POST(req: Request) {

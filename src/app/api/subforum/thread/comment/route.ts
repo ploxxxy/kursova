@@ -10,6 +10,10 @@ export async function PATCH(req: Request) {
       return new Response('Unauthorized', { status: 401 })
     }
 
+    if (session.user.role === 'BANNED') {
+      return new Response('User is banned', { status: 403 })
+    }
+    
     const body = await req.json()
     const { threadId, text, replyToId } = CommentValidator.parse(body)
 
