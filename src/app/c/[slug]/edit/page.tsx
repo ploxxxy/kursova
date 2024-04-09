@@ -1,8 +1,13 @@
 import SubforumEditForm from '@/components/forms/SubforumEditForm'
 import { authOptions, getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
+import { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 import { FC } from 'react'
+
+export const metadata: Metadata = {
+  title: 'Редагування форуму',
+}
 
 interface PageProps {
   params: {

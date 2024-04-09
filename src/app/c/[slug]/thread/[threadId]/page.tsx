@@ -11,6 +11,7 @@ import { formatTimeToNow } from '@/lib/utils'
 import { CachedThread } from '@/types/redis'
 import { Role, Thread, User, Vote } from '@prisma/client'
 import { ArrowBigDown, ArrowBigUp, Loader2 } from 'lucide-react'
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { FC, Suspense } from 'react'
 
@@ -169,3 +170,21 @@ const ThreadVoteSkeleton = () => {
 }
 
 export default page
+
+export async function generateMetadata({ params }: PageProps) {
+  const thread = await db.thread.findFirst({
+    where: {
+      id: params.threadId,
+    },
+  })
+
+  if (!thread) {
+    return notFound()
+  }
+
+  const metadata: Metadata = {
+    title: thread.title,
+  }
+
+  return metadata
+}

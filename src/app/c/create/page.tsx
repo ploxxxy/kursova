@@ -66,7 +66,7 @@ const Page = () => {
 
   return (
     <div className="container mx-auto flex h-full max-w-3xl items-center">
-      <div className="relative h-fit w-full gap-y-4 rounded-lg bg-card border p-4">
+      <div className="relative h-fit w-full gap-y-4 rounded-lg border bg-card p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Створити форум</h1>
         </div>
@@ -82,14 +82,14 @@ const Page = () => {
               c/
             </p>
             <Input
-              className="pl-6 mt-2"
+              className="mt-2 pl-6"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
           </div>
         </div>
 
-        <div className="jsutify-end flex gap-3 mt-4">
+        <div className="jsutify-end mt-4 flex gap-3">
           <Button variant="subtle" onClick={() => router.back()}>
             Скасувати
           </Button>
