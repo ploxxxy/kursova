@@ -36,7 +36,7 @@ const Username: FC<UsernameProps> = ({ user, className }) => {
     <HoverCard>
       <HoverCardTrigger
         className={cn(
-          'cursor-pointer hover:text-text-900 hover:underline',
+          'cursor-pointer hover:text-text-900 hover:underline truncate max-w-24 sm:max-w-none',
           user.role === 'BANNED' && 'line-through',
           user.role === 'MODERATOR' && 'text-green-500',
           user.role === 'ADMIN' && 'text-red-500',

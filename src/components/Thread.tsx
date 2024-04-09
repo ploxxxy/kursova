@@ -50,16 +50,16 @@ const Thread: FC<ThreadProps> = ({
         <div className="w-0 flex-1">
           <div className="mt-1 flex max-h-40 items-center text-xs text-text">
             <Link
-              className="flex items-center gap-1 text-sm text-text-800 hover:text-text-950 hover:underline"
+              className="max-w-36 sm:max-w-none items-center gap-1 truncate text-sm text-text-800 hover:text-text-950 hover:underline"
               href={`/c/${subforumName}`}
             >
-              <Globe className="h-4 w-4" />
+              <Globe className="h-4 w-4 inline mr-1 mb-px" />
               {subforumTitle ?? `c/${subforumName}`}
             </Link>
             <span className="px-1">•</span>
             <Username user={thread.author} />
             <span className="px-1">•</span>
-            <span suppressHydrationWarning>
+            <span suppressHydrationWarning className='text-nowrap'>
               {formatTimeToNow(thread.createdAt)}
             </span>
           </div>
