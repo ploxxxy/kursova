@@ -50,7 +50,7 @@ const UserAuthForm: FC = () => {
   }
 
   return (
-    <div className='flex justify-center gap-2'>
+    <div className="flex justify-center gap-2">
       <Button
         variant="outline"
         isLoading={isLoadingGoogle}
@@ -61,15 +61,17 @@ const UserAuthForm: FC = () => {
         Google
       </Button>
 
-      <Button
-        variant="outline"
-        isLoading={isLoadingDemo}
-        onClick={loginIntoDemoAccount}
-        className="w-full"
-      >
-        {isLoadingDemo ? null : <User className="mr-2 h-4 w-4" />}
-        Демо-акаунт
-      </Button>
+      {process.env.NODE_ENV === 'development' && (
+        <Button
+          variant="outline"
+          isLoading={isLoadingDemo}
+          onClick={loginIntoDemoAccount}
+          className="w-full"
+        >
+          {isLoadingDemo ? null : <User className="mr-2 h-4 w-4" />}
+          Демо-акаунт
+        </Button>
+      )}
     </div>
   )
 }

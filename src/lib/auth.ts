@@ -1,26 +1,21 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { nanoid } from 'nanoid'
 import { NextAuthOptions, getServerSession } from 'next-auth'
+import type { AuthOptions } from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { db } from './db'
 import { Role } from '@prisma/client'
 
-export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(db),
-  session: {
-    strategy: 'jwt',
-  },
-  pages: {
-    signIn: '/login',
-  },
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
+const providers: AuthOptions['providers'] = [
+  GoogleProvider({
+    clientId: process.env.GOOGLE_CLIENT_ID!,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+  }),
+]
 
-    // TODO: ⚠⚠⚠⚠ Remove this provider in production
+if (process.env.NODE_ENV === 'development') {
+  providers.push(
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -34,7 +29,18 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
-  ],
+  )
+}
+
+export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(db),
+  session: {
+    strategy: 'jwt',
+  },
+  pages: {
+    signIn: '/login',
+  },
+  providers,
   callbacks: {
     async session({ session, token }) {
       if (token) {
