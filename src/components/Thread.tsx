@@ -2,12 +2,12 @@
 
 import { formatTimeToNow } from '@/lib/utils'
 import type { Thread, User, Vote } from '@prisma/client'
-import { Globe, MessageSquare, Users } from 'lucide-react'
-import { FC, useEffect, useRef } from 'react'
-import EditorOutput from './EditorOutput'
-import ThreadVoteClient from './thread-vote/ThreadVoteClient'
+import { Globe, MessageSquare } from 'lucide-react'
 import Link from 'next/link'
+import { FC, useRef } from 'react'
+import EditorOutput from './EditorOutput'
 import Username from './Username'
+import ThreadVoteClient from './thread-vote/ThreadVoteClient'
 
 type PartialVote = Pick<Vote, 'type'>
 
@@ -50,16 +50,16 @@ const Thread: FC<ThreadProps> = ({
         <div className="w-0 flex-1">
           <div className="mt-1 flex max-h-40 items-center text-xs text-text">
             <Link
-              className="max-w-36 sm:max-w-none items-center gap-1 truncate text-sm text-text-800 hover:text-text-950 hover:underline"
+              className="max-w-36 items-center gap-1 truncate text-sm text-text-800 hover:text-text-950 hover:underline sm:max-w-none"
               href={`/c/${subforumName}`}
             >
-              <Globe className="h-4 w-4 inline mr-1 mb-px" />
+              <Globe className="mb-px mr-1 inline h-4 w-4" />
               {subforumTitle ?? `c/${subforumName}`}
             </Link>
             <span className="px-1">•</span>
             <Username user={thread.author} />
             <span className="px-1">•</span>
-            <span suppressHydrationWarning className='text-nowrap'>
+            <span suppressHydrationWarning className="text-nowrap">
               {formatTimeToNow(thread.createdAt)}
             </span>
           </div>

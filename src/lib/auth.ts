@@ -1,11 +1,10 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-import { nanoid } from 'nanoid'
-import { NextAuthOptions, getServerSession } from 'next-auth'
-import type { AuthOptions } from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
-import CredentialsProvider from 'next-auth/providers/credentials'
-import { db } from './db'
 import { Role } from '@prisma/client'
+import type { AuthOptions } from 'next-auth'
+import { NextAuthOptions, getServerSession } from 'next-auth'
+import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from 'next-auth/providers/google'
+import { db } from './db'
 
 const providers: AuthOptions['providers'] = [
   GoogleProvider({
@@ -68,14 +67,6 @@ export const authOptions: NextAuthOptions = {
         token.id = user!.id
         return token
       }
-
-      // force random username
-      // if (!dbUser.username) {
-      //   await db.user.update({
-      //     where: { id: dbUser.id },
-      //     data: { username: nanoid(10) },
-      //   })
-      // }
 
       return {
         id: dbUser.id,

@@ -107,14 +107,12 @@ const page: FC<PageProps> = async ({ params }) => {
               </span>
             </div>
 
-            <div className="relative">
-              {accessGranted && (
-                <ThreadDeleteButton
-                  subforumName={params.slug}
-                  threadId={thread?.id ?? cachedThread.id}
-                />
-              )}
-            </div>
+            {accessGranted && (
+              <ThreadDeleteButton
+                subforumName={params.slug}
+                threadId={thread?.id ?? cachedThread.id}
+              />
+            )}
           </div>
           <h1 className="py-2 text-xl font-semibold leading-6 text-text-950">
             {thread?.title ?? cachedThread.title}

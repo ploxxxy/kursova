@@ -1,6 +1,7 @@
 'use client'
 
 import ErrorBoundary from '@/app/ErrorBoundary'
+import { useOnClickOutside } from '@/hooks/use-on-click-outside'
 import { cn } from '@/lib/utils'
 import { useDebounceCallback } from '@mantine/hooks'
 import { Prisma, Subforum } from '@prisma/client'
@@ -17,8 +18,6 @@ import {
   CommandItem,
   CommandList,
 } from './ui/Command'
-import { useOnClickOutside } from '@/hooks/use-on-click-outside'
-import Link from 'next/link'
 
 interface SearchbarProps {}
 

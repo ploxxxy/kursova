@@ -4,9 +4,9 @@ import { Toaster } from '@/components/ui/Toaster'
 import { cn } from '@/lib/utils'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google' // Wix_Madefor_Text  |  Geologica
+import { Wix_Madefor_Text } from 'next/font/google'
 
-const font = Inter({
+const font = Wix_Madefor_Text({
   subsets: ['latin', 'cyrillic'],
 })
 

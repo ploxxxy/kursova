@@ -4,7 +4,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@radix-ui/react-tooltip'
+} from '@/components/ui/Tooltip'
 import React, { FC } from 'react'
 
 interface CustomTooltipProps {
@@ -15,7 +15,9 @@ interface CustomTooltipProps {
 const CustomTooltip: FC<CustomTooltipProps> = ({ children, text }) => {
   return (
     <Tooltip>
-      <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <TooltipTrigger asChild>
+        <div className="relative">{children}</div>
+      </TooltipTrigger>
       <TooltipContent className="rounded border bg-card p-2 text-sm text-text shadow">
         {text}
       </TooltipContent>
